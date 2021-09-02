@@ -1,0 +1,201 @@
+@charset "utf-8";
+
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/*--container영역--*/
+#container{
+	width:1925px;
+	height:1230px;
+	text-align:left;
+	overflow:hidden;
+    background-image: url(../img/background.jpg);
+}
+
+/*--header영역--*/
+#header {
+	width:1920px;
+	height:40px;
+	display:table-cell;
+	vertical-align:middle;
+}
+#gnav {
+	font-size: 17px;
+    font-weight: bold;
+	width: 1920px;
+	}
+	
+#gnav .menu:after {
+	content:"";
+	display:block;
+	clear:both;
+	}
+#gnav .menu {
+    background-color: rgb(233, 190, 213);
+}
+#gnav .menu > li {
+	float:left;
+}
+
+#gnav .menu li a {
+	display:block;
+    width: 125px;
+	height: 40px;
+	text-align:center;
+	color:black; 
+    padding-top: 21px;
+    background-color: rgb(245, 226, 236);
+    border: 1px solid rgb(148, 116, 116);
+	}
+
+#gnav .menu { position:relative; }
+
+#gnav .menu a:hover { 
+    color:rgb(160, 160, 160);
+}
+
+/*--main영역--*/
+main{
+	clear:both;
+}
+
+/*--nav영역--*/
+.nav {
+    width: 250px;
+    height: 500px;
+    float: left;
+}
+h2 {
+    font-size: 18px;
+    font-weight: 300;
+    width: 200px;
+    height: 30px;
+    background-color: rgba(151, 243, 243, 0.849);
+    color:black;
+    padding: 16px 25px 10px 25px;
+    text-align: center;
+    margin-top: 45px;
+}
+.nav select {
+    width: 250px;
+}
+.nav li a {
+	display:block;
+    width: 200px;
+	height: 20px;
+    font-size: 15px;
+	text-align:center;
+	color:black;
+    padding: 18px 25px 10px 25px;
+	}
+.nav a:hover {
+    opacity: 0.7;
+}
+
+/*--choicesystem영역--*/
+.choicesystem {
+    width: 800px;
+    height: 500px;
+    padding-left: 30px;
+    margin-left: 50px;
+    float: left;
+}
+.choices {
+    width: 350px;
+    height: 350px;
+    margin-bottom: 10px;
+}
+.choices select {
+    width: 210px;
+}
+.choices th {
+    width: 110px;
+    padding-right: 15px;
+    text-align: right;
+}
+.choices input {
+    width: 200px;
+    height: 25px;
+    text-align: left;
+}
+.room_choice {
+    margin-top: 35px;
+}
+/*--btnsm영역--*/
+.btns {
+    overflow: hidden;
+    width: 320px;
+    height: 50px;
+    text-align: center;
+    margin-left: 34px;
+    
+}
+.btn {
+    font-weight: 600;
+	width: 80px;
+    height: 40px;
+	padding: 10px;
+    margin-left: 10px;
+	border: none;
+	font-size: 15px;
+    border-radius: 10%;
+}
+/*버튼에 마우스를 올려놓았을 때*/
+.btn:hover {
+	opacity: 0.7;
+}
+/*버튼을 누른 시간*/
+.btn:active {
+	color: #fff;
+}
+/*버튼의 역할에 맞춰 색상 나누기*/
+.btn {
+	background-color: rgb(208, 234, 245);
+}
+
