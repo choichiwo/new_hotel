@@ -86,22 +86,27 @@ public class HomeController {
 	@RequestMapping(value="/check_user", method=RequestMethod.POST)
 	   public String go_room(HttpServletRequest hsr, Model model) {
 	      String userid = hsr.getParameter("userid");
-	      String userpw = hsr.getParameter("userpw");
-	      model.addAttribute("userid", userid);
-	      model.addAttribute("userpw", userpw);
-	      HttpSession session = hsr.getSession(); // session �궗�슜媛��뒫�븯寃� �븿
-	      session.setAttribute("loginid", userid);
-	      return "redirect:/booking"; // RequestMapping�쓽 寃쎈줈�씠由�
+	      String passcode = hsr.getParameter("passcode");
+	      //DB에서 유저확인 : 기존유저면 booking 없으면 home으로
+	      IMember member=sqlSession.getMapper(IMember.class);
+	      int n=member.doCheckUser(userid,passcode);
+	      if(n>0) {
+	    	  HttpSession session = hsr.getSession();
+	    	  session.setAttribute("loginid", userid);
+	    	  return "redirect:/booking";
+	      } else { //비등록 회원
+	    	  return "home";
+	      }
 	   }
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
 	   public String booking(HttpServletRequest hrs) {
 		HttpSession session = hrs.getSession();
 		String loginid = (String)session.getAttribute("loginid");
-		if(loginid.equals("1234")) {
-			return "booking";
+		if(loginid==null) {
+			return "redirect:/home"; 
 		}
 		else {
-			return "redirect:/home";
+			return "booking";
 		}
 	   }
 	

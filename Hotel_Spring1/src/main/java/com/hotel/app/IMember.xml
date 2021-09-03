@@ -5,4 +5,7 @@
 	<insert id="doSignin">
 		insert into member values (#{param1},#{param2},#{param3},#{param4})
 	</insert>
+	<select id="doCheckUser" resultType="int">
+		select count(*) from member where userid=#{param1} and passcode1=#{param2}
+	</select>
 </mapper>
