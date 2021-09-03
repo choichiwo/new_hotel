@@ -56,8 +56,8 @@ public class HomeController {
 	@RequestMapping(value ="/join",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	public String doSignin(ParamList pl) {
-		IRoom room=sqlSession.getMapper(IRoom.class);
-		room.doSignin(pl.username, pl.userid,pl.passcode1,pl.mobile);
+		IMember member=sqlSession.getMapper(IMember.class);
+		member.doSignin(pl.username, pl.userid,pl.passcode1,pl.mobile);
 		return "home";
 	}
 	

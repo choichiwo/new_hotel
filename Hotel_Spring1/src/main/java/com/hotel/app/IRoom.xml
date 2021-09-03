@@ -22,7 +22,4 @@
 		update room set name=#{param2},type=#{param3},howmany=#{param4},howmuch=#{param5}
 		where roomcode=#{param1}
 	</update>
-	<insert id="doSignin">
-		insert into member values (#{param1},#{param2},#{param3},#{param4})
-	</insert>
 </mapper>

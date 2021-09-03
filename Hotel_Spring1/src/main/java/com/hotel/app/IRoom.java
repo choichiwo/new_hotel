@@ -8,5 +8,4 @@ public interface IRoom {
 	void doDeleteRoom(int roomcode);
 	void doAddRoom(String roomname,int roomtype,int howmany,int howmuch);
 	void doUpdateRoom(int roomcode,String roomname,int roomtype,int howmany,int howmuch);
-	void doSignin(String username,String userid,String passcode1,String mobile);
 }
