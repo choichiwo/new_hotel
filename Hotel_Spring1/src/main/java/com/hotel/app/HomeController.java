@@ -53,6 +53,27 @@ public class HomeController {
 	public String goLoing() {
 		return "login";
 	}
+	@RequestMapping(value ="/join",method = RequestMethod.POST,
+			produces = "application/text; charset=utf-8")
+	public String doSignin(ParamList pl) {
+		IRoom room=sqlSession.getMapper(IRoom.class);
+		room.doSignin(pl.username, pl.userid,pl.passcode1,pl.mobile);
+		return "home";
+	}
+	
+//	다른 방법
+//	@RequestMapping(value ="/join",method = RequestMethod.POST,
+//			produces = "application/text; charset=utf-8")
+//	@ResponseBody
+//	public String doSignin(HttpServletRequest hsr) {
+//		String username=hsr.getParameter("username");
+//		String userid=hsr.getParameter("userid");
+//		String passcode1=hsr.getParameter("passcode1");
+//		String mobile=hsr.getParameter("mobile");
+//		IRoom room=sqlSession.getMapper(IRoom.class);
+//		room.doSignin(username, userid, passcode1, mobile);
+//		return "/";
+//	}
 	
 //	@RequestMapping(value="/viewinfo", method=RequestMethod.POST)
 //	public String viewInfo(HttpServletRequest hsr, Model model) {
@@ -97,10 +118,12 @@ public class HomeController {
 	public String goJoin() {
 		return "newbie";
 	}
-	@RequestMapping(value="/join", method=RequestMethod.POST)
-	public String newinfo(@ModelAttribute("pl") ParamList pl) {
-		return "home";
-	}
+//	@RequestMapping(value="/join", method=RequestMethod.POST)
+//	public String newinfo(@ModelAttribute("pl") ParamList pl) {
+//		return "home";
+//	}
+	
+	
 	@RequestMapping("/room")
 	   public String go_reservation(HttpServletRequest hsr,Model model) {
 		HttpSession session = hsr.getSession();
@@ -131,6 +154,7 @@ public class HomeController {
 			jo.put("typename", roominfo.get(i).getTypename());
 			jo.put("howmany", roominfo.get(i).getHowmany());
 			jo.put("howmuch", roominfo.get(i).getHowmuch());
+			jo.put("typecode", roominfo.get(i).getTypecode());
 			ja.add(jo);
 		}
 		return ja.toString();

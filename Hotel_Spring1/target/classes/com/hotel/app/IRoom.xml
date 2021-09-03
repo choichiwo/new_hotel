@@ -4,7 +4,7 @@
 <!-- namespace="인터페이스이 경로명+이름" -->
 <mapper namespace="com.hotel.app.IRoom">
 	<select id="getRoomList" resultType="com.hotel.app.Roominfo">
-		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch
+		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch, b.typecode
 		from room a,roomtype b
 		where a.type=b.typecode
 	</select>
@@ -22,4 +22,7 @@
 		update room set name=#{param2},type=#{param3},howmany=#{param4},howmuch=#{param5}
 		where roomcode=#{param1}
 	</update>
+	<insert id="doSignin">
+		insert into member values (#{param1},#{param2},#{param3},#{param4})
+	</insert>
 </mapper>

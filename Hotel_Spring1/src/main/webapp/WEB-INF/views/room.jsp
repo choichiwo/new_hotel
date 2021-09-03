@@ -75,9 +75,10 @@
 $(document)
 .ready(function() {
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
+	//$.post("http://localhost:8081/app/getRoomList",{},function(result){
 			console.log(result);
 			$.each(result,function(ndx,value){
-				str='<option value="'+value['roomcode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+				str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
 				$("#roomlist").append(str);
 				/* str='<option value="${value['roomcode']}">${value['roomname']},
 				${value['typename']}${value['howmany']}${value['howmuch']}</option>';
@@ -89,9 +90,9 @@ $(document)
 	var roomlist = $("#roomlist option:selected").text(); //option값 가져오기
 	var roomlist1 = $("#roomlist").val(); //value에서 typecode 가져오기
 	var pk = String(roomlist1).split(" "); //typecode를 가져오기 위해 split
-	var typecode = parseInt(pk[0]); //int로 타입변환
+	var typecode = parseInt(pk[1]); //int로 타입변환
 	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
-	
+
 	let code=$("#roomlist option:selected").val();
 	$("#roomcode").val(code);
 	
@@ -121,6 +122,7 @@ $(document)
 })
 .on("click","#btnDelete", function(){
 	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#roomcode').val()},
+	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){
 		console.log(result);
 		if(result=="ok"){
@@ -143,6 +145,7 @@ $(document)
 	let roomcode=String($('#roomcode').val());
 	if(roomcode==''){ //insert
 		$.post("http://localhost:8080/app/addRoom",
+		//$.post("http://localhost:8081/app/addRoom",		
 				{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
 				function(result){
 			console.log(result);
@@ -152,6 +155,7 @@ $(document)
 		},'text');
 	} else { // update
 		$.post("http://localhost:8080/app/updateRoom",
+		//$.post("http://localhost:8081/app/updateRoom",		
 				{roomcode:roomcode,roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
 				function(result){
 			console.log(result);
