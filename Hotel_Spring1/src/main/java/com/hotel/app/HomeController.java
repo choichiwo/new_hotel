@@ -165,7 +165,8 @@ public class HomeController {
 				hsr.getParameter("roomname"),
 				Integer.parseInt(hsr.getParameter("roomtype")),
 				Integer.parseInt(hsr.getParameter("howmany")), 
-				Integer.parseInt(hsr.getParameter("howmuch")));
+				Integer.parseInt(hsr.getParameter("howmuch"))
+				);
 		return "ok";
 	}
 	

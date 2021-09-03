@@ -74,7 +74,7 @@
 <script>
 $(document)
 .ready(function() {
-	$.post("http://localhost:8081/app/getRoomList",{},function(result){
+	$.post("http://localhost:8080/app/getRoomList",{},function(result){
 			console.log(result);
 			$.each(result,function(ndx,value){
 				str='<option value="'+value['roomcode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
@@ -92,7 +92,7 @@ $(document)
 	var typecode = parseInt(pk[0]); //int로 타입변환
 	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
 	
-	let code=$("#roomlist option").val();
+	let code=$("#roomlist option:selected").val();
 	$("#roomcode").val(code);
 	
 	var roomname = list[0];
@@ -120,7 +120,7 @@ $(document)
 	return false;
 })
 .on("click","#btnDelete", function(){
-	$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},
+	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#roomcode').val()},
 			function(result){
 		console.log(result);
 		if(result=="ok"){
@@ -131,18 +131,18 @@ $(document)
 	return false;
 })
 .on('click','#btnAdd',function(){
-	let roomname=$('#roomname').val();
-	let roomtype=$('#roomtype').val();
-	let howmany=$('#howmany').val();
-	let howmuch=$('#howmuch').val();
+	let roomname=String($('#roomname').val());
+	let roomtype=String($('#roomtype').val());
+	let howmany=String($('#howmany').val());
+	let howmuch=String($('#howmuch').val());
 	// validation (유효성검사)
 	if(roomname=='' || roomtype=='' || howmany=='' || howmuch==''){
 		alert('누락된 값이 있습니다.');
 		return false;
 	}
-	let roomcode=$('#roomcode').val();
+	let roomcode=String($('#roomcode').val());
 	if(roomcode==''){ //insert
-		$.post("http://localhost:8081/app/addRoom",
+		$.post("http://localhost:8080/app/addRoom",
 				{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
 				function(result){
 			console.log(result);
@@ -151,7 +151,7 @@ $(document)
 			}
 		},'text');
 	} else { // update
-		$.post("http://localhost:8081/app/updateRoom",
+		$.post("http://localhost:8080/app/updateRoom",
 				{roomcode:roomcode,roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
 				function(result){
 			console.log(result);
