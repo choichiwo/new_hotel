@@ -67,23 +67,23 @@
                             <td><input type="text" name="roomname" id="roomname" size="20"></td>
                         </tr>
                         <tr>
-                            <th class="bunlyu">숙박기간</th>
-                            <td><input id="bunlyu" type="text">~<input type="text"></td>
-                        </tr>
-                        <tr>
-                            <th>숙박가능인원</th>
+                            <th>예약인원</th>
                             <td><input type="number" name="a1" id="a1" size="20">명</td>
                         </tr>
                         <tr>
-                            <th>1박비용</th>
-                            <td><input type="text" name="a1" id="a1" size="20">원</td>
+                            <th>최대인원</th>
+                            <td><input type="text" name="a1" id="a1" size="20">명</td>
                         </tr>
                         <tr>
-                            <th>총 숙박비</th>
-                            <td><input type="text" name="a1" id="a1" size="20">원</td>
+                            <th class="bunlyu">예약기간</th>
+                            <td><input id="bunlyu" type="text">~<input type="text"></td>
                         </tr>
                         <tr>
-                            <th>예약자 모바일</th>
+                            <th>예약자명</th>
+                            <td><input type="text" name="a2" id="a2" size="20"></td>
+                        </tr>
+                        <tr>
+                            <th>모바일</th>
                             <td><input type="text" name="a2" id="a2" size="20"></td>
                         </tr>
                     </table>
