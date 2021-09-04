@@ -116,7 +116,7 @@ main{
 }
 /*--possible_list 영역  */
 .possible_list select {
-    width: 356px;
+    width: 400px;
 }
 .possible_list h2 {
     margin-top: 10px;
@@ -128,6 +128,7 @@ main{
     width: 450px;
     height: 500px;
     margin-top: 35px;
+    margin-left: 85px;
 }
 .choicesystem #roomname {
     width: 323px;
@@ -185,5 +186,5 @@ main{
     margin-top: 35px;
 }
 .impossible_list select {
-    width: 250px;
+    width: 400px;
 }

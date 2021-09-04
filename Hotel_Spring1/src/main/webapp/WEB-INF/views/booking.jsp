@@ -67,8 +67,12 @@
                             <td><input type="text" name="roomname" id="roomname" size="20"></td>
                         </tr>
                         <tr>
+                            <th>객실종류</th>
+                            <td><input type="text" name="a1" id="a1" size="20"></td>
+                        </tr>
+                        <tr>
                             <th>예약인원</th>
-                            <td><input type="number" name="a1" id="a1" size="20">명</td>
+                            <td><input type="text" name="a1" id="a1" size="20">명</td>
                         </tr>
                         <tr>
                             <th>최대인원</th>
@@ -89,15 +93,15 @@
                     </table>
                 </div><!-- loom_choice -->
                 <div class="btns">
-                    <input type="reset" value="등록" class="btn btn-check">
-                    <input type="submit" value="삭제" class="btn btn-delete">
-                    <input type="submit" value="초기화" class="btn btn-clear">
+                    <input type="button" value="예약완료" class="btn btn-check">
+                    <input type="button" value="비우기" class="btn btn-delete">
+                    <input type="button" value="예약취소" class="btn btn-clear">
                 </div><!-- btns -->
             </div><!-- choicesystem -->
 
 
             <div class="impossible_list">
-                <h2>예약불가능</h2>
+                <h2>예약된 객실</h2>
                     <select size="7" name="pref" multiple>
                         <option value="" selected>객실을 선택해 주세요.</option>
                         <option value="Suite Room">Suite Room</option>
