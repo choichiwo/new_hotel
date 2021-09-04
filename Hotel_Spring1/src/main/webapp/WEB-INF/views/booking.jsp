@@ -27,8 +27,8 @@
             <div class="space">
                 <table class="space_table">
                     <tr>
-                        <th>숙박기간</th>
-                        <td><input type="date">~<input type="date"></td>
+                        <th>예약기간</th>
+                        <td><input type="text">~<input type="text"></td>
                     </tr>
                     <tr>
                         <th class="bunlyu">객실분류</th>

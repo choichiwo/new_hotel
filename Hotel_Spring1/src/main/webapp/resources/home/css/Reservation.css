@@ -51,8 +51,8 @@ table {
 
 /*--container영역--*/
 #container{
-	width:1925px;
-	height:1230px;
+	width:1535px;
+	height:720px;
 	text-align:left;
 	overflow:hidden;
     background-image: url(../img/background.jpg);
@@ -60,7 +60,7 @@ table {
 
 /*--header영역--*/
 #header {
-	width:1920px;
+	width:1535px;
 	height:40px;
 	display:table-cell;
 	vertical-align:middle;
@@ -124,6 +124,7 @@ h2 {
 }
 .nav select {
     width: 250px;
+    height: 300px;
 }
 .nav li a {
 	display:block;
