@@ -31,7 +31,7 @@
                         <td><input type="text">~<input type="text"></td>
                     </tr>
                     <tr>
-                        <th class="bunlyu">객실분류</th>
+                        <th class="bunlyu">객실종류</th>
                         <td>
                             <select name="possible_day" id=""> 
                                 <option value="" selected>객실을 선택해 주세요.</option>
@@ -40,13 +40,13 @@
                                 <option value="Double Room">Double Room</option>
                                 <option value="Single Room">Single Room</option>
                                 <option value="Domitory">Domitory</option>
-                            </select> <br>
-                                <input type="button" value="찾기">
+                            </select>
+                                <input type="button" value="조회">
                         </td>
                     </tr>
                 </table>
                 <div class="possible_list">
-                        <h2>예약가능</h2>
+                        <h2>예약가능객실</h2>
                             <select size="7" name="pref" multiple>
                                 <option value="" selected>객실을 선택해 주세요.</option>
                                 <option value="Suite Room">Suite Room</option>
@@ -63,12 +63,12 @@
                 <div class="room_choice">
                     <table class="choices">
                         <tr>
-                            <th>객실이름</th>
+                            <th>객실명</th>
                             <td><input type="text" name="roomname" id="roomname" size="20"></td>
                         </tr>
                         <tr>
                             <th class="bunlyu">숙박기간</th>
-                            <td><input id="bunlyu" type="date">~<input type="date">(N박)</td>
+                            <td><input id="bunlyu" type="text">~<input type="text"></td>
                         </tr>
                         <tr>
                             <th>숙박가능인원</th>
