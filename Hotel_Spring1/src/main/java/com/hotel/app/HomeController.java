@@ -99,8 +99,11 @@ public class HomeController {
 	      }
 	   }
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
-	   public String booking(HttpServletRequest hrs) {
+	   public String booking(HttpServletRequest hrs,Model model) {
 		HttpSession session = hrs.getSession();
+		IRoom room=sqlSession.getMapper(IRoom.class);
+		ArrayList<Roomtype> roomtype=room.getRoomType();
+		model.addAttribute("roomType",roomtype);
 		String loginid = (String)session.getAttribute("loginid");
 		if(loginid==null) {
 			return "redirect:/home"; 
@@ -110,10 +113,14 @@ public class HomeController {
 		}
 	   }
 	
-   @RequestMapping("/booking")
-   public String goRoom() {
-      return "booking";
-   }
+//   @RequestMapping("/booking")
+//   public String go_booking(HttpServletRequest hsr,Model model) {
+//	   HttpSession session = hsr.getSession();   
+//	   IRoom room=sqlSession.getMapper(IRoom.class);
+//	   ArrayList<Roomtype> roomtype=room.getRoomType();
+//	   model.addAttribute("roomType",roomtype);
+//	   return "booking";
+//   }
 
 	@RequestMapping("/home")
 	public String goHome() {

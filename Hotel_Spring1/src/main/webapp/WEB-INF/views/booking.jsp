@@ -33,13 +33,17 @@
                     <tr>
                         <th class="bunlyu">객실종류</th>
                         <td>
-                            <select name="possible_day" id=""> 
-                                <option value="" selected>객실을 선택해 주세요.</option>
+                            <select name="possible_day" id="roomtype" size="1" style="width:200px;">
+                            <c:forEach items="${roomType}" var="room">
+                             	<option value="${room.typecode}">${room.name}</option>
+                             	console.log(${roomType});
+                             </c:forEach> 
+                                <!-- <option value="" selected>객실을 선택해 주세요.</option>
                                 <option value="Suite Room">Suite Room</option>
                                 <option value="Family Room">Family Room</option>
                                 <option value="Double Room">Double Room</option>
                                 <option value="Single Room">Single Room</option>
-                                <option value="Domitory">Domitory</option>
+                                <option value="Domitory">Domitory</option> -->
                             </select>
                                 <input type="button" value="조회">
                         </td>
@@ -47,13 +51,13 @@
                 </table>
                 <div class="possible_list">
                         <h2>예약가능객실</h2>
-                            <select size="7" name="pref" multiple>
-                                <option value="" selected>객실을 선택해 주세요.</option>
+                            <select id="roomlist" size="10" name="pref" >
+                                <!-- <option value="" selected>객실을 선택해 주세요.</option>
                                 <option value="Suite Room">Suite Room</option>
                                 <option value="Family Room">Family Room</option>
                                 <option value="Double Room">Double Room</option>
                                 <option value="Single Room">Single Room</option>
-                                <option value="Domitory">Domitory</option>
+                                <option value="Domitory">Domitory</option> -->
                                 </select>
                 </div><!-- possible_list -->
             </div><!-- space -->
@@ -116,5 +120,21 @@
 
         </div><!--container -->
 </body>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script>
+$(document)
+.ready(function() {
+	$.post("http://localhost:8080/app/getRoomList",{},function(result){
+	//$.post("http://localhost:8081/app/getRoomList",{},function(result){
+			console.log(result);
+			$.each(result,function(ndx,value){
+				str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+				$("#roomlist").append(str);
+				/* str='<option value="${value['roomcode']}">${value['roomname']},
+				${value['typename']}${value['howmany']}${value['howmuch']}</option>';
+				<option value="2">백두산,Suite Room,8,500000</option>*/
+			});
+	},"json");
+})
 </script>
 </html>
