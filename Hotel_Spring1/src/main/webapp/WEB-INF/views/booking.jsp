@@ -28,7 +28,7 @@
                 <table class="space_table">
                     <tr>
                         <th>예약기간</th>
-                        <td><input type="text">~<input type="text"></td>
+                        <td><input id="checkin" name="checkin" type="date">~<input id="checkout" name="checkout" type="date"></td>
                     </tr>
                     <tr>
                         <th class="bunlyu">객실종류</th>
@@ -82,7 +82,7 @@
                         </tr>
                         <tr>
                             <th>예약인원</th>
-                            <td><input type="text" name="howman" id="howman" size="20">명</td>
+                            <td><input type="text" name="person" id="howman" size="20">명</td>
                         </tr>
                         <tr>
                             <th>최대인원</th>
@@ -90,19 +90,19 @@
                         </tr>
                         <tr>
                             <th class="bunlyu">예약기간</th>
-                            <td><input id="bunlyu" type="text">~<input type="text"></td>
+                            <td><input id="checkin1" type="date">~<input id="checkout1" type="date"></td>
                         </tr>
                         <tr>
                             <th>1박금액</th>
                             <td><input type="text" name="howmuch" id="howmuch" size="20">원</td>
                         </tr>
                         <tr>
-                            <th>숙바비총액</th>
-                            <td><input type="text" name="howmuch" id="summuch" size="20">원</td>
+                            <th>숙박비총액</th>
+                            <td><input type="text" name="summuch" id="summuch" size="20">원</td>
                         </tr>
                         <tr>
                             <th>예약자명</th>
-                            <td><input type="text" name="howname" id="howname" size="20"></td>
+                            <td><input type="text" name="name" id="howname" size="20"></td>
                         </tr>
                         <tr>
                             <th>모바일</th>
@@ -145,9 +145,11 @@ $(document)
 	},"json");
 })
 .on("click","#btnFind", function(){
+	var roomlist = $("#roomlist option:selected").text();
+	var list = String(roomlist).split(",")
 	let typecode=$('#roomtype').val();
 	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
-		$("#roomlist").val();
+		$("#roomlist").val(list);
 	} else if(typecode==2){
 		$("#roomlist").val();
 	} else if(typecode==3){
@@ -163,7 +165,16 @@ $(document)
 	var pk = String(roomlist1).split(" "); //typecode를 가져오기 위해 split
 	var typecode = parseInt(pk[1]); //int로 타입변환
 	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
-
+	var checkin = $("#checkin").val();
+	var checkout = $("#checkout").val();
+	var p = checkin.split('-');
+    var p1 = checkout.split('-');
+    p=parseInt(p[2]);
+    p1=parseInt(p1[2]);
+    console.log(p);
+    console.log(p1);
+    $('#summuch').val((p1-p)*list[3]);
+	
 	let code=$("#roomlist option:selected").val();
 	$("#roomcode").val(code);
 	
@@ -171,7 +182,8 @@ $(document)
 	var roomtype = list[1];
 	var howmany = list[2];
 	var howmuch = list[3];
-	
+	$("#checkin1").val(checkin);
+	$("#checkout1").val(checkout);
 	$("#roomname").val(roomname);
 	$("#howmany").val(howmany);
 	$("#howmuch").val(howmuch);

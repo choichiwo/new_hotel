@@ -206,6 +206,22 @@ public class HomeController {
 		return "ok";
 	}
 	
+	@RequestMapping(value ="/addBooking",method = RequestMethod.POST,
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String addBooking(HttpServletRequest hsr) {
+		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		int person=Integer.parseInt(hsr.getParameter("person"));
+		String checkin=hsr.getParameter("checkin");
+		String checkout=hsr.getParameter("checkout");
+		String summuch=hsr.getParameter("summuch");
+		String name=hsr.getParameter("name");
+		String mobile=hsr.getParameter("mobile");
+		IBooking booking=sqlSession.getMapper(IBooking.class);
+		booking.doAddBooking(roomcode, person, checkin, checkout,summuch,name,mobile);
+		return "ok";
+	}
+	
 	@RequestMapping("/logout")
 	   public String logout(HttpServletRequest hsr) {
 		HttpSession session = hsr.getSession();
