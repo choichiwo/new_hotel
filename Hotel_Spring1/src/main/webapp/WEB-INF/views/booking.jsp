@@ -72,13 +72,13 @@
                         </tr>
                         <tr>
                             <th>객실종류</th>
-                            <select name="possible_day" id="roomtype" size="1" style="width:200px;">
+                            <td>
+                            <select name="possible_day" id="roomtype1" size="1">
                             <c:forEach items="${roomType}" var="room">
                              	<option value="${room.typecode}">${room.name}</option>
-                             	console.log(${roomType});
                              </c:forEach> 
                              </select>
-                            <!-- <td><input type="text" name="a1" id="roomtype" size="20"></td> -->
+                             </td>
                         </tr>
                         <tr>
                             <th>예약인원</th>
@@ -103,22 +103,16 @@
                     </table>
                 </div><!-- loom_choice -->
                 <div class="btns">
-                    <input type="button" value="예약완료" class="btn btn-check">
-                    <input type="button" value="비우기" class="btn btn-delete">
-                    <input type="button" value="예약취소" class="btn btn-clear">
+                    <input type="button" value="예약완료" id="btnAdd" class="btn btn-check">
+                    <input type="button" value="비우기" id="btnEmpty" class="btn btn-delete">
+                    <input type="button" value="예약취소" id="btnDelete" class="btn btn-clear">
                 </div><!-- btns -->
             </div><!-- choicesystem -->
 
 
             <div class="impossible_list">
                 <h2>예약된 객실</h2>
-                    <select size="7" name="pref" multiple>
-                        <option value="" selected>객실을 선택해 주세요.</option>
-                        <option value="Suite Room">Suite Room</option>
-                        <option value="Family Room">Family Room</option>
-                        <option value="Double Room">Double Room</option>
-                        <option value="Single Room">Single Room</option>
-                        <option value="Domitory">Domitory</option>
+                    <select size="20" name="pref" id="impossible_list">
                         </select>
             </div><!--  impossible_list -->
 
@@ -175,14 +169,49 @@ $(document)
 	$("#howmuch").val(howmuch);
 	
 	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
-		$("#roomtype").val(1).prop("selected", true);
+		$("#roomtype1").val(1).prop("selected", true);
 	} else if(typecode==2){
-		$("#roomtype").val(2).prop("selected", true);
+		$("#roomtype1").val(2).prop("selected", true);
 	} else if(typecode==3){
-		$("#roomtype").val(3).prop("selected", true);
+		$("#roomtype1").val(3).prop("selected", true);
 	} else if(typecode==4){
-		$("#roomtype").val(4).prop("selected", true);
+		$("#roomtype1").val(4).prop("selected", true);
 	}
+	return false;
+})
+.on('click','#btnAdd',function(){
+	let roomname=String($('#roomname').val());
+	let roomtype=String($('#roomtype').val());
+	let howmany=String($('#howmany').val());
+	let howmuch=String($('#howmuch').val());
+	// validation (유효성검사)
+	if(roomname=='' || roomtype=='' || howmany=='' || howmuch==''){
+		alert('누락된 값이 있습니다.');
+		return false;
+	}
+	let roomcode=String($('#roomcode').val());
+	if(roomcode==''){ //insert
+		$.post("http://localhost:8080/app/addRoom",
+		//$.post("http://localhost:8081/app/addRoom",		
+				{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
+				function(result){
+			console.log(result);
+			if(result=="ok"){
+				location.reload();
+			}
+		},'text');
+	} else { // update
+		$.post("http://localhost:8080/app/updateRoom",
+		//$.post("http://localhost:8081/app/updateRoom",		
+				{roomcode:roomcode,roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
+				function(result){
+			console.log(result);
+			if(result=="ok"){
+				location.reload();
+			}
+		},'text');
+	}
+	
 	return false;
 })
 </script>

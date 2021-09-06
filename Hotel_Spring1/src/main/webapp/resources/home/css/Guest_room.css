@@ -133,8 +133,8 @@ main{
 .choicesystem #roomname {
     width: 323px;
 }
-.choicesystem #roomtype {
-    width: 308px;
+.choicesystem #roomtype1 {
+    width: 323px;
     margin-top: 15px;
 }
 .choicesystem #howmany {
