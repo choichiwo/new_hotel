@@ -210,7 +210,7 @@ public class HomeController {
 			produces = "application/text; charset=utf-8")
 	@ResponseBody
 	public String addBooking(HttpServletRequest hsr) {
-		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		int roomcode=Integer.parseInt(hsr.getParameter("roomcode1"));
 		int person=Integer.parseInt(hsr.getParameter("person"));
 		String checkin=hsr.getParameter("checkin");
 		String checkout=hsr.getParameter("checkout");

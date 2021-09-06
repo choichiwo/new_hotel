@@ -35,8 +35,7 @@
                         <td>
                             <select name="possible_day" id="roomtype" size="1" style="width:200px;">
                             <c:forEach items="${roomType}" var="room">
-                             	<option value="${room.typecode}">${room.name}</option>
-                             	console.log(${roomType});
+                             	<option value="${room.typecode}">${room.name}</option>         
                              </c:forEach> 
                                 <!-- <option value="" selected>객실을 선택해 주세요.</option>
                                 <option value="Suite Room">Suite Room</option>
@@ -68,7 +67,7 @@
                     <table class="choices">
                         <tr>
                             <th>객실명</th>
-                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="hidden" id="roomcode"></td>
+                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="text" id="roomcode"></td>
                         </tr>
                         <tr>
                             <th>객실종류</th>
@@ -133,32 +132,33 @@
 $(document)
 .ready(function() {
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
-	//$.post("http://localhost:8081/app/getRoomList",{},function(result){
-			console.log(result);
-			$.each(result,function(ndx,value){
-				str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
-				$("#roomlist").append(str);
-				/* str='<option value="${value['roomcode']}">${value['roomname']},
-				${value['typename']}${value['howmany']}${value['howmuch']}</option>';
-				<option value="2">백두산,Suite Room,8,500000</option>*/
-			});
-	},"json");
+		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
+				$.each(result,function(ndx,value){
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+						$("#roomlist").append(str);
+					/* str='<option value="${value['roomcode']}">${value['roomname']},
+					${value['typename']}${value['howmany']}${value['howmuch']}</option>';
+					<option value="2">백두산,Suite Room,8,500000</option>*/
+				});
+		},"json");
 })
 .on("click","#btnFind", function(){
-	var roomlist = $("#roomlist option:selected").text();
+	var roomlist = $("#roomlist").text();
 	var list = String(roomlist).split(",")
 	let typecode=$('#roomtype').val();
-	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
-		$("#roomlist").val(list);
-	} else if(typecode==2){
-		$("#roomlist").val();
-	} else if(typecode==3){
-		$("#roomlist").val();
-	} else if(typecode==4){
-		$("#roomlist").val();
-	}
+	let typecode1=$('#roomlist').val();
+	$('#roomlist').children('option').remove();
+	$.post("http://localhost:8080/app/getRoomList",{},function(result){
+		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
+				$.each(result,function(ndx,value){
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+					if($('#roomtype').val()==value['typecode']){
+						$("#roomlist").append(str);
+					}
+				});
+		},"json");
 	return false;
-})
+}) 
 .on("click","#roomlist", function(){
 	var roomlist = $("#roomlist option:selected").text(); //option값 가져오기
 	var roomlist1 = $("#roomlist").val(); //value에서 typecode 가져오기
@@ -171,12 +171,10 @@ $(document)
     var p1 = checkout.split('-');
     p=parseInt(p[2]);
     p1=parseInt(p1[2]);
-    console.log(p);
-    console.log(p1);
     $('#summuch').val((p1-p)*list[3]);
 	
-	let code=$("#roomlist option:selected").val();
-	$("#roomcode").val(code);
+    var roomcode = parseInt(pk[0]);
+	$("#roomcode").val(roomcode);
 	
 	var roomname = list[0];
 	var roomtype = list[1];
@@ -200,38 +198,30 @@ $(document)
 	return false;
 })
 .on('click','#btnAdd',function(){
-	let roomname=String($('#roomname').val());
-	let roomtype=String($('#roomtype').val());
-	let howmany=String($('#howmany').val());
-	let howmuch=String($('#howmuch').val());
+	let roomcode1 = String($('#roomcode').val());
+	let person=String($('#howman').val());
+	let checkin=String($('#checkin').val());
+	let checkout=String($('#checkout').val());
+	let summuch=String($('#summuch').val());
+	let name=String($('#howname').val());
+	let mobile=String($('#mobile').val());
 	// validation (유효성검사)
-	if(roomname=='' || roomtype=='' || howmany=='' || howmuch==''){
+	if(roomcode1=='' || person=='' || checkin=='' || checkout=='' || summuch=='' || name=='' || mobile==''){
 		alert('누락된 값이 있습니다.');
 		return false;
 	}
-	let roomcode=String($('#roomcode').val());
-	if(roomcode==''){ //insert
-		$.post("http://localhost:8080/app/addRoom",
-		//$.post("http://localhost:8081/app/addRoom",		
-				{roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
-				function(result){
-			console.log(result);
-			if(result=="ok"){
-				location.reload();
-			}
-		},'text');
-	} else { // update
-		$.post("http://localhost:8080/app/updateRoom",
-		//$.post("http://localhost:8081/app/updateRoom",		
-				{roomcode:roomcode,roomname:roomname,roomtype:roomtype,howmany:howmany,howmuch:howmuch},
-				function(result){
-			console.log(result);
-			if(result=="ok"){
-				location.reload();
-			}
-		},'text');
-	}
-	
+	//insert
+	$.post("http://localhost:8080/app/addBooking",
+	//$.post("http://localhost:8081/app/addBooking",		
+			{roomcode1:roomcode1,person:person,checkin:checkin,checkout:checkout,summuch:summuch,name:name,mobile:mobile},
+			function(result){
+		console.log(result);
+		if(result=="ok"){
+			location.reload();
+		}
+	},'text'); 
+	$('#impossible_list').append('<option>'+$('#roomname').val()+' '+$('#roomtype option:selected').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
+			' '+$('#chekin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>')
 	return false;
 })
 </script>
