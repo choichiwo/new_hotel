@@ -93,8 +93,12 @@
                             <td><input id="bunlyu" type="text">~<input type="text"></td>
                         </tr>
                         <tr>
-                            <th>숙바비총액</th>
+                            <th>1박금액</th>
                             <td><input type="text" name="howmuch" id="howmuch" size="20">원</td>
+                        </tr>
+                        <tr>
+                            <th>숙바비총액</th>
+                            <td><input type="text" name="howmuch" id="summuch" size="20">원</td>
                         </tr>
                         <tr>
                             <th>예약자명</th>
