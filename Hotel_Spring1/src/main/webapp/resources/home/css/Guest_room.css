@@ -133,11 +133,23 @@ main{
 .choicesystem #roomname {
     width: 323px;
 }
-.choicesystem #a1 {
+.choicesystem #roomtype {
     width: 308px;
     margin-top: 15px;
 }
-.choicesystem #a2 {
+.choicesystem #howmany {
+    width: 308px;
+    margin-top: 15px;
+}
+.choicesystem #howman {
+    width: 308px;
+    margin-top: 15px;
+}
+.choicesystem #howname {
+    width: 323px;
+    margin-top: 15px;
+}
+.choicesystem #mobile {
     width: 323px;
     margin-top: 15px;
 }

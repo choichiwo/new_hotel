@@ -45,7 +45,7 @@
                                 <option value="Single Room">Single Room</option>
                                 <option value="Domitory">Domitory</option> -->
                             </select>
-                                <input type="button" value="조회">
+                                <input type="button" value="조회" id="btnFind">
                         </td>
                     </tr>
                 </table>
@@ -68,19 +68,25 @@
                     <table class="choices">
                         <tr>
                             <th>객실명</th>
-                            <td><input type="text" name="roomname" id="roomname" size="20"></td>
+                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="hidden" id="roomcode"></td>
                         </tr>
                         <tr>
                             <th>객실종류</th>
-                            <td><input type="text" name="a1" id="a1" size="20"></td>
+                            <select name="possible_day" id="roomtype" size="1" style="width:200px;">
+                            <c:forEach items="${roomType}" var="room">
+                             	<option value="${room.typecode}">${room.name}</option>
+                             	console.log(${roomType});
+                             </c:forEach> 
+                             </select>
+                            <!-- <td><input type="text" name="a1" id="roomtype" size="20"></td> -->
                         </tr>
                         <tr>
                             <th>예약인원</th>
-                            <td><input type="text" name="a1" id="a1" size="20">명</td>
+                            <td><input type="text" name="a1" id="howman" size="20">명</td>
                         </tr>
                         <tr>
                             <th>최대인원</th>
-                            <td><input type="text" name="a1" id="a1" size="20">명</td>
+                            <td><input type="text" name="a1" id="howmany" size="20">명</td>
                         </tr>
                         <tr>
                             <th class="bunlyu">예약기간</th>
@@ -88,11 +94,11 @@
                         </tr>
                         <tr>
                             <th>예약자명</th>
-                            <td><input type="text" name="a2" id="a2" size="20"></td>
+                            <td><input type="text" name="a2" id="howname" size="20"></td>
                         </tr>
                         <tr>
                             <th>모바일</th>
-                            <td><input type="text" name="a2" id="a2" size="20"></td>
+                            <td><input type="text" name="a2" id="mobile" size="20"></td>
                         </tr>
                     </table>
                 </div><!-- loom_choice -->
@@ -135,6 +141,49 @@ $(document)
 				<option value="2">백두산,Suite Room,8,500000</option>*/
 			});
 	},"json");
+})
+.on("click","#btnFind", function(){
+	let typecode=$('#roomtype').val();
+	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
+		$("#roomlist").val();
+	} else if(typecode==2){
+		$("#roomlist").val();
+	} else if(typecode==3){
+		$("#roomlist").val();
+	} else if(typecode==4){
+		$("#roomlist").val();
+	}
+	return false;
+})
+.on("click","#roomlist", function(){
+	var roomlist = $("#roomlist option:selected").text(); //option값 가져오기
+	var roomlist1 = $("#roomlist").val(); //value에서 typecode 가져오기
+	var pk = String(roomlist1).split(" "); //typecode를 가져오기 위해 split
+	var typecode = parseInt(pk[1]); //int로 타입변환
+	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
+
+	let code=$("#roomlist option:selected").val();
+	$("#roomcode").val(code);
+	
+	var roomname = list[0];
+	var roomtype = list[1];
+	var howmany = list[2];
+	var howmuch = list[3];
+	
+	$("#roomname").val(roomname);
+	$("#howmany").val(howmany);
+	$("#howmuch").val(howmuch);
+	
+	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
+		$("#roomtype").val(1).prop("selected", true);
+	} else if(typecode==2){
+		$("#roomtype").val(2).prop("selected", true);
+	} else if(typecode==3){
+		$("#roomtype").val(3).prop("selected", true);
+	} else if(typecode==4){
+		$("#roomtype").val(4).prop("selected", true);
+	}
+	return false;
 })
 </script>
 </html>
