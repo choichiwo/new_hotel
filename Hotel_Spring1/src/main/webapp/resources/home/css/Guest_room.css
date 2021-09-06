@@ -202,9 +202,9 @@ main{
     float: left;
     width: 450px;
     height: 500px;
-    margin-left: 100px;
+    margin-left: 50px;
     margin-top: 35px;
 }
 .impossible_list select {
-    width: 400px;
+    width: 480px;
 }

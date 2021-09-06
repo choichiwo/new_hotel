@@ -171,6 +171,29 @@ public class HomeController {
 		}
 		return ja.toString();
 	}
+	@RequestMapping(value ="/getbooking",method = RequestMethod.POST,
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String getbooking(HttpServletRequest hsr) {
+		IBooking booking=sqlSession.getMapper(IBooking.class);
+		ArrayList<Bookinginfo> bookinginfo=booking.getBooking();
+		JSONArray ja = new JSONArray();
+		for(int i=0;i<bookinginfo.size();i++) {
+			JSONObject jo= new JSONObject();
+			jo.put("roomcode", bookinginfo.get(i).getRoomcode());
+			jo.put("typecode", bookinginfo.get(i).getTypecode());
+			jo.put("roomname", bookinginfo.get(i).getRoomname());
+			jo.put("typename", bookinginfo.get(i).getTypename());
+			jo.put("person", bookinginfo.get(i).getPerson());
+			jo.put("checkin", bookinginfo.get(i).getCheckin());
+			jo.put("checkout", bookinginfo.get(i).getCheckout());
+			jo.put("summuch", bookinginfo.get(i).getSummuch());
+			jo.put("name", bookinginfo.get(i).getName());
+			jo.put("mobile", bookinginfo.get(i).getMobile());
+			ja.add(jo);
+		}
+		return ja.toString();
+	}
 	@RequestMapping(value ="/deleteRoom",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody

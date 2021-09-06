@@ -67,7 +67,7 @@
                     <table class="choices">
                         <tr>
                             <th>객실명</th>
-                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="text" id="roomcode"></td>
+                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="hidden" id="roomcode"></td>
                         </tr>
                         <tr>
                             <th>객실종류</th>
@@ -119,7 +119,7 @@
 
             <div class="impossible_list">
                 <h2>예약된 객실</h2>
-                    <select size="20" name="pref" id="impossible_list">
+                    <select size="20" name="pref" id="impossible_list" multiple="multiple">
                         </select>
             </div><!--  impossible_list -->
 
@@ -141,6 +141,14 @@ $(document)
 					<option value="2">백두산,Suite Room,8,500000</option>*/
 				});
 		},"json");
+	$.post("http://localhost:8080/app/getbooking",{},function(result){
+		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
+				$.each(result,function(ndx,value){
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
+					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
+					$("#impossible_list").append(str);
+				});
+		},"json");
 })
 .on("click","#btnFind", function(){
 	var roomlist = $("#roomlist").text();
@@ -151,7 +159,7 @@ $(document)
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
 				$.each(result,function(ndx,value){
-					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmany']+'</option>';
 					if($('#roomtype').val()==value['typecode']){
 						$("#roomlist").append(str);
 					}
@@ -217,11 +225,15 @@ $(document)
 			function(result){
 		console.log(result);
 		if(result=="ok"){
+			/* let str='<option>'+$('#roomname').val()+' '+$('#roomtype').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
+			' '+$('#checkin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>';
+			$('#impossible_list').append(str); */
 			location.reload();
 		}
-	},'text'); 
-	$('#impossible_list').append('<option>'+$('#roomname').val()+' '+$('#roomtype option:selected').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
-			' '+$('#chekin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>')
+			
+	},'text');
+	
+	
 	return false;
 })
 </script>

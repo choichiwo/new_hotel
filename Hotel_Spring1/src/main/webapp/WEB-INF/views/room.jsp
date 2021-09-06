@@ -38,7 +38,7 @@
                 <table class="choices">
                     <tr>
                         <th>객실이름</th>
-                        <td><input type="text" id="roomname" name="room_name" size="20"><input type="text" id="roomcode"></td>
+                        <td><input type="text" id="roomname" name="room_name" size="20"><input type="hidden" id="roomcode"></td>
                     </tr>
                     <tr>
                         <th class="bunlyu">객실분류</th>
