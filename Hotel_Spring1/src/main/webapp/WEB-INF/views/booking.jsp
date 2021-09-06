@@ -82,23 +82,27 @@
                         </tr>
                         <tr>
                             <th>예약인원</th>
-                            <td><input type="text" name="a1" id="howman" size="20">명</td>
+                            <td><input type="text" name="howman" id="howman" size="20">명</td>
                         </tr>
                         <tr>
                             <th>최대인원</th>
-                            <td><input type="text" name="a1" id="howmany" size="20">명</td>
+                            <td><input type="text" name="howmany" id="howmany" size="20">명</td>
                         </tr>
                         <tr>
                             <th class="bunlyu">예약기간</th>
                             <td><input id="bunlyu" type="text">~<input type="text"></td>
                         </tr>
                         <tr>
+                            <th>숙바비총액</th>
+                            <td><input type="text" name="howmuch" id="howmuch" size="20">원</td>
+                        </tr>
+                        <tr>
                             <th>예약자명</th>
-                            <td><input type="text" name="a2" id="howname" size="20"></td>
+                            <td><input type="text" name="howname" id="howname" size="20"></td>
                         </tr>
                         <tr>
                             <th>모바일</th>
-                            <td><input type="text" name="a2" id="mobile" size="20"></td>
+                            <td><input type="text" name="mobile" id="mobile" size="20"></td>
                         </tr>
                     </table>
                 </div><!-- loom_choice -->
