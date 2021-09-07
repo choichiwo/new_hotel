@@ -141,14 +141,6 @@ $(document)
 					<option value="2">백두산,Suite Room,8,500000</option>*/
 				});
 		},"json");
-	$.post("http://localhost:8080/app/getbooking",{},function(result){
-		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
-				$.each(result,function(ndx,value){
-					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
-					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
-					$("#impossible_list").append(str);
-				});
-		},"json");
 })
 .on("click","#btnFind", function(){
 	var roomlist = $("#roomlist").text();
@@ -167,6 +159,16 @@ $(document)
 					}
 				});
 		},"json");
+	$('#impossible_list').children('option').remove();	
+	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val()},function(result){
+		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
+				$.each(result,function(ndx,value){
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
+					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
+					$("#impossible_list").append(str);
+				});
+		},"json");	
+		
 	return false;
 }) 
 .on("click","#roomlist", function(){
@@ -229,6 +231,7 @@ $(document)
 	} else if(typecode==4){
 		$("#roomtype1").val(4).prop("selected", true);
 	}
+	
 	return false;
 })
 .on('click','#btnAdd',function(){
@@ -260,11 +263,11 @@ $(document)
 	},'text');
 	return false;
 })
-/* .on("click","#btnEmpty", function(){
-	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,,#mobile").val("");
+.on("click","#btnEmpty", function(){
+	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,#mobile").val("");
 	return false;
 })
-.on("click","#btnDelete", function(){
+/*.on("click","#btnDelete", function(){
 	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#roomcode').val()},
 	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){

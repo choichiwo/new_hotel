@@ -176,7 +176,9 @@ public class HomeController {
 	@ResponseBody
 	public String getbooking(HttpServletRequest hsr) {
 		IBooking booking=sqlSession.getMapper(IBooking.class);
-		ArrayList<Bookinginfo> bookinginfo=booking.getBooking();
+		String checkin=hsr.getParameter("checkin");
+		String checkout=hsr.getParameter("checkout");
+		ArrayList<Bookinginfo> bookinginfo=booking.getBooking(checkin,checkout);
 		JSONArray ja = new JSONArray();
 		for(int i=0;i<bookinginfo.size();i++) {
 			JSONObject jo= new JSONObject();
