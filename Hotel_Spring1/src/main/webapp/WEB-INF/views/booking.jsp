@@ -28,7 +28,7 @@
                 <table class="space_table">
                     <tr>
                         <th>예약기간</th>
-                        <td><input id="checkin" name="checkin" type="date">~<input id="checkout" name="checkout" type="date"></td>
+                        <td><input id="checkin" name="checkin" type="date" required="required">~<input id="checkout" name="checkout" type="date" required="required"></td>
                     </tr>
                     <tr>
                         <th class="bunlyu">객실종류</th>
