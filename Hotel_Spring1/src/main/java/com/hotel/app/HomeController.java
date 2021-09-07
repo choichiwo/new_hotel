@@ -178,7 +178,8 @@ public class HomeController {
 		IBooking booking=sqlSession.getMapper(IBooking.class);
 		String checkin=hsr.getParameter("checkin");
 		String checkout=hsr.getParameter("checkout");
-		ArrayList<Bookinginfo> bookinginfo=booking.getBooking(checkin,checkout);
+		int typecode=Integer.parseInt(hsr.getParameter("typecode"));
+		ArrayList<Bookinginfo> bookinginfo=booking.getBooking(checkin,checkout,typecode);
 		JSONArray ja = new JSONArray();
 		for(int i=0;i<bookinginfo.size();i++) {
 			JSONObject jo= new JSONObject();

@@ -119,7 +119,7 @@
 
             <div class="impossible_list">
                 <h2>예약된 객실</h2>
-                    <select size="20" name="pref" id="impossible_list" multiple="multiple">
+                    <select size="20" name="pref" id="impossible_list">
                         </select>
             </div><!--  impossible_list -->
 
@@ -159,8 +159,9 @@ $(document)
 					}
 				});
 		},"json");
+		
 	$('#impossible_list').children('option').remove();	
-	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val()},function(result){
+	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
