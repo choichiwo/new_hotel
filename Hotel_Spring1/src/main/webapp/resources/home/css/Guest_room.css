@@ -206,5 +206,6 @@ main{
     margin-top: 35px;
 }
 .impossible_list select {
-    width: 480px;
+    width: 450px;
+    overflow: scroll;
 }
