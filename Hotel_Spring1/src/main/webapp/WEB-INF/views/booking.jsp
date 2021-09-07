@@ -155,6 +155,8 @@ $(document)
 	var list = String(roomlist).split(",")
 	let typecode=$('#roomtype').val();
 	let typecode1=$('#roomlist').val();
+
+	
 	$('#roomlist').children('option').remove();
 	$.post("http://localhost:8080/app/getRoomList",{},function(result){
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
@@ -173,26 +175,50 @@ $(document)
 	var pk = String(roomlist1).split(" "); //typecode를 가져오기 위해 split
 	var typecode = parseInt(pk[1]); //int로 타입변환
 	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
-	var checkin = $("#checkin").val();
+	/* var checkin = $("#checkin").val();
 	var checkout = $("#checkout").val();
 	var p = checkin.split('-');
     var p1 = checkout.split('-');
     p=parseInt(p[2]);
     p1=parseInt(p1[2]);
-    $('#summuch').val((p1-p)*list[3]);
-	
-    var roomcode = parseInt(pk[0]);
-	$("#roomcode").val(roomcode);
-	
+    $('#summuch').val((p1-p)*list[3]); */
 	var roomname = list[0];
 	var roomtype = list[1];
 	var howmany = list[2];
 	var howmuch = list[3];
-	$("#checkin1").val(checkin);
-	$("#checkout1").val(checkout);
+	
 	$("#roomname").val(roomname);
 	$("#howmany").val(howmany);
 	$("#howmuch").val(howmuch);
+  
+    let checkin = $('#checkin').val();
+    let checkout = $('#checkout').val();
+    $("#checkin1").val(checkin);
+	$("#checkout1").val(checkout);
+    console.log('checkin ['+checkin+'] checkout ['+checkout+']');
+    //console.log($('#price').val());
+    if(checkin == '' || checkout == '') { 
+       return false;         
+    }
+    checkin = new Date(checkin);
+    checkout = new Date(checkout);
+    
+    if(checkin > checkout) {
+       alert('체크인 날짜가 체크아웃보다 나중 일 수 없습니다.');
+       return false;
+    }
+    let ms = Math.abs(checkout-checkin);
+    let days = Math.ceil(ms/(1000*60*60*24));
+    let price = parseInt($('#howmuch').val())
+    let total = days*price;
+
+    $('#summuch').val(total);
+	
+    var roomcode = parseInt(pk[0]);
+	$("#roomcode").val(roomcode);
+	
+	
+
 	
 	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
 		$("#roomtype1").val(1).prop("selected", true);
@@ -234,7 +260,7 @@ $(document)
 	},'text');
 	return false;
 })
-.on("click","#btnEmpty", function(){
+/* .on("click","#btnEmpty", function(){
 	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,,#mobile").val("");
 	return false;
 })
@@ -249,6 +275,6 @@ $(document)
 		}
 	},'text');
 	return false;
-})
+}) */
 </script>
 </html>
