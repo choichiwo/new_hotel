@@ -232,8 +232,22 @@ $(document)
 		}
 			
 	},'text');
-	
-	
+	return false;
+})
+.on("click","#btnEmpty", function(){
+	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,,#mobile").val("");
+	return false;
+})
+.on("click","#btnDelete", function(){
+	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#roomcode').val()},
+	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
+			function(result){
+		console.log(result);
+		if(result=="ok"){
+			$('#btnEmpty').trigger('click'); //입력란 비우기
+			$('#roomlist option:selected').remove(); //room리스트에서 제거
+		}
+	},'text');
 	return false;
 })
 </script>
