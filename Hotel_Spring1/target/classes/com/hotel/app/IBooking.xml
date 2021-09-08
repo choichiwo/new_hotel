@@ -5,7 +5,7 @@
 <mapper namespace="com.hotel.app.IBooking">
 	<select id="getBooking" resultType="com.hotel.app.Bookinginfo">
 		select a.bookcode, to_char(a.checkin, 'YYYY-MM-DD') as checkin,to_char(a.checkout, 'YYYY-MM-DD') as checkout, a.mobile, a.name, a.summuch, a.person, a.roomcode, b.name roomname, c.name typename from booking a, room b, roomtype c
-      where a.roomcode = b.roomcode and c.typecode =#{param3}  and b.type=c.typecode and a.checkout>#{param1} and #{param2}>a.checkin order by a.checkin	
+      where a.roomcode = b.roomcode and b.type =#{param3} and b.type=c.typecode and a.checkin between #{param1} and #{param2} and a.checkout between #{param1} and #{param2} 	
 	</select>
 	<insert id="doAddBooking">
 		insert into booking(bookcode,roomcode,person,checkin,checkout,summuch,name,mobile)

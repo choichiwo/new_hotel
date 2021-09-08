@@ -146,24 +146,33 @@ $(document)
 	var roomlist = $("#roomlist").text();
 	var list = String(roomlist).split(",")
 	let typecode=$('#roomtype').val();
-	let typecode1=$('#roomlist').val();
-
+	
+	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
+		$("#roomtype1").val(1).prop("selected", true);
+	} else if(typecode==2){
+		$("#roomtype1").val(2).prop("selected", true);
+	} else if(typecode==3){
+		$("#roomtype1").val(3).prop("selected", true);
+	} else if(typecode==4){
+		$("#roomtype1").val(4).prop("selected", true);
+	}
+		
 	
 	$('#roomlist').children('option').remove();
-	$.post("http://localhost:8080/app/getRoomList1",{checkin:$('#checkin').val(),checkout:$('#checkout').val()},function(result){
+	$.post("http://localhost:8080/app/getRoomList1",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
-				console.log("hi");
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmany']+'</option>';
-					if($('#roomtype').val()==value['typecode']){
+					//if($('#roomtype').val()==value['typecode']){
 						$("#roomlist").append(str);
-					}
+					//}
 				});
 		},"json");
 			
 	$('#impossible_list').children('option').remove();	
 	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
+				console.log($('#roomtype1').val());
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
 					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
@@ -220,9 +229,6 @@ $(document)
 	
     var roomcode = parseInt(pk[0]);
 	$("#roomcode").val(roomcode);
-	
-	
-
 	
 	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
 		$("#roomtype1").val(1).prop("selected", true);

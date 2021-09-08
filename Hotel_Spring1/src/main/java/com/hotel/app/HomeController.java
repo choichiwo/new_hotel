@@ -171,7 +171,7 @@ public class HomeController {
 		}
 		return ja.toString();
 	}
-	/*
+
 	@RequestMapping(value ="/getRoomList1",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody
@@ -179,21 +179,22 @@ public class HomeController {
 		IRoom room=sqlSession.getMapper(IRoom.class);
 		String checkin=hsr.getParameter("checkin");
 		String checkout=hsr.getParameter("checkout");
-		ArrayList<Roominfo> roominfo=room.getRoomList1(checkin,checkout);
+		int typecode=Integer.parseInt(hsr.getParameter("typecode"));
+		ArrayList<Roominfo> roominfo1=room.getRoomList1(checkin,checkout,typecode);
 		JSONArray ja = new JSONArray();
-		for(int i=0;i<roominfo.size();i++) {
+		for(int i=0;i<roominfo1.size();i++) {
 			JSONObject jo= new JSONObject();
-			jo.put("roomcode", roominfo.get(i).getRoomcode());
-			jo.put("roomname", roominfo.get(i).getRoomname());
-			jo.put("typename", roominfo.get(i).getTypename());
-			jo.put("howmany", roominfo.get(i).getHowmany());
-			jo.put("howmuch", roominfo.get(i).getHowmuch());
-			jo.put("typecode", roominfo.get(i).getTypecode());
+			jo.put("roomcode", roominfo1.get(i).getRoomcode());
+			jo.put("roomname", roominfo1.get(i).getRoomname());
+			jo.put("typename", roominfo1.get(i).getTypename());
+			jo.put("howmany", roominfo1.get(i).getHowmany());
+			jo.put("howmuch", roominfo1.get(i).getHowmuch());
+			jo.put("typecode", roominfo1.get(i).getTypecode());
 			ja.add(jo);
 		}
 		return ja.toString();
 	}
-	*/
+
 	@RequestMapping(value ="/getbooking",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody

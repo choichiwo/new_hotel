@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface IRoom {
 	ArrayList<Roominfo> getRoomList();
-	ArrayList<Roominfo> getRoomList1(String checkin,String checkout);
+	ArrayList<Roominfo> getRoomList1(String checkin,String checkout,int typecode);
 	ArrayList<Roomtype> getRoomType();
 	void doDeleteRoom(int roomcode);
 	void doAddRoom(String roomname,int roomtype,int howmany,int howmuch);
