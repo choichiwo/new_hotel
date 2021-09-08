@@ -271,7 +271,7 @@ public class HomeController {
 	@ResponseBody
 	public String updateBooking(HttpServletRequest hsr) {
 		IBooking booking=sqlSession.getMapper(IBooking.class);
-		booking.doUpdateBooking(Integer.parseInt(hsr.getParameter("roomcode")),
+		booking.doUpdateBooking(Integer.parseInt(hsr.getParameter("bookcode")),
 				Integer.parseInt(hsr.getParameter("person")),
 				hsr.getParameter("name"),
 				hsr.getParameter("mobile")

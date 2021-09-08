@@ -14,4 +14,8 @@
 	<delete id="doDeleteBooking">
 		delete from booking where bookcode=#{param1}
 	</delete>
+	<update id="doUpdateBooking">
+		update booking set person=#{param2},name=#{param3},mobile=#{param4}
+		where bookcode=#{param1}
+	</update>
 </mapper>

@@ -67,9 +67,9 @@
                     <table class="choices">
                         <tr>
                             <th>객실명</th>
-                            <td><input type="text" name="roomname" id="roomname" size="20">
-                            <input type="text" id="roomcode">
-                            <input type="text" id="bookcode"></td>
+                            <td><input type="text" name="roomname" id="roomname" size="20" readonly>
+                            <input type="hidden" id="roomcode">
+                            <input type="hidden" id="bookcode"></td>
                         </tr>
                         <tr>
                             <th>객실종류</th>
@@ -91,7 +91,7 @@
                         </tr>
                         <tr>
                             <th class="bunlyu">예약기간</th>
-                            <td><input id="checkin1" type="date">~<input id="checkout1" type="date"></td>
+                            <td><input id="checkin1" type="date" readonly>~<input id="checkout1" type="date" readonly></td>
                         </tr>
                         <tr>
                             <th>1박금액</th>
@@ -320,12 +320,13 @@ $(document)
 	let summuch=String($('#summuch').val());
 	let name=String($('#howname').val());
 	let mobile=String($('#mobile').val());
+	let bookcode=$('#bookcode').val();
 	// validation (유효성검사)
 	if(roomcode1=='' || person=='' || checkin=='' || checkout=='' || summuch=='' || name=='' || mobile==''){
 		alert('누락된 값이 있습니다.');
 		return false;
 	}
-	if(roomcode==''){ //insert
+	if(bookcode==''){ //insert
 		$.post("http://localhost:8080/app/addBooking",
 		//$.post("http://localhost:8081/app/addBooking",		
 				{roomcode1:roomcode1,person:person,checkin:checkin,checkout:checkout,summuch:summuch,name:name,mobile:mobile},
@@ -341,11 +342,12 @@ $(document)
 	} else { // update
 	$.post("http://localhost:8080/app/updateBooking",
 			//$.post("http://localhost:8081/app/updateRoom",		
-					{roomcode1:roomcode1,person:person,name:name,mobile:mobile},
+					{roomcode1:roomcode1,person:person,name:name,mobile:mobile,bookcode:$('#bookcode').val()},
 					function(result){
 				console.log(result);
 				if(result=="ok"){
-					location.reload();
+					$('#btnEmpty').trigger('click'); //입력란 비우기
+					$('#btnFind').trigger('click');
 				}
 			},'text');
 		}
@@ -353,17 +355,17 @@ $(document)
 	return false;
 })
 .on("click","#btnEmpty", function(){
-	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,#mobile").val("");
+	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,#mobile,#roomcode,#bookcode").val("");
 	return false;
 })
 .on("click","#btnDelete", function(){
-	$.post("http://localhost:8080/app/deleteRoom",{bookcode:$('#bookcode').val()},
+	$.post("http://localhost:8080/app/deletBooking",{bookcode:$('#bookcode').val()},
 	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){
 		console.log(result);
 		if(result=="ok"){
-			$('#btnEmpty').trigger('click'); //입력란 비우기
 			$('#impossible_list option:selected').remove(); //room리스트에서 제거
+			$('#btnEmpty').trigger('click'); //입력란 비우기
 			$('#btnFind').trigger('click');
 		}
 	},'text');
