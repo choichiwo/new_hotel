@@ -171,6 +171,7 @@ public class HomeController {
 		}
 		return ja.toString();
 	}
+	/*
 	@RequestMapping(value ="/getRoomList1",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody
@@ -192,6 +193,7 @@ public class HomeController {
 		}
 		return ja.toString();
 	}
+	*/
 	@RequestMapping(value ="/getbooking",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody

@@ -7,7 +7,7 @@ public class Roominfo {
     private int howmany;
     private int howmuch;
     private int typecode;
-	   
+	 
 	 public Roominfo() {}   
 	 public Roominfo(int roomcode, String roomname, String typename, int howmany, int howmuch, int typecode) {
 		   this.roomcode = roomcode;
