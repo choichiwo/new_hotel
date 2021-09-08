@@ -266,6 +266,18 @@ public class HomeController {
 				);
 		return "ok";
 	}
+	@RequestMapping(value ="/updateBooking",method = RequestMethod.POST,
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String updateBooking(HttpServletRequest hsr) {
+		IBooking booking=sqlSession.getMapper(IBooking.class);
+		booking.doUpdateBooking(Integer.parseInt(hsr.getParameter("roomcode")),
+				Integer.parseInt(hsr.getParameter("person")),
+				hsr.getParameter("name"),
+				hsr.getParameter("mobile")
+				);
+		return "ok";
+	}
 	
 	@RequestMapping(value ="/addBooking",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")

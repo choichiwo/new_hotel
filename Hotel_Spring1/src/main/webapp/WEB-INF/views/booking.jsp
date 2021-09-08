@@ -325,20 +325,31 @@ $(document)
 		alert('누락된 값이 있습니다.');
 		return false;
 	}
-	//insert
-	$.post("http://localhost:8080/app/addBooking",
-	//$.post("http://localhost:8081/app/addBooking",		
-			{roomcode1:roomcode1,person:person,checkin:checkin,checkout:checkout,summuch:summuch,name:name,mobile:mobile},
-			function(result){
-		console.log(result);
-		if(result=="ok"){
-			/* let str='<option>'+$('#roomname').val()+' '+$('#roomtype').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
-			' '+$('#checkin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>';
-			$('#impossible_list').append(str); */
-			location.reload();
+	if(roomcode==''){ //insert
+		$.post("http://localhost:8080/app/addBooking",
+		//$.post("http://localhost:8081/app/addBooking",		
+				{roomcode1:roomcode1,person:person,checkin:checkin,checkout:checkout,summuch:summuch,name:name,mobile:mobile},
+				function(result){
+			console.log(result);
+			if(result=="ok"){
+				/* let str='<option>'+$('#roomname').val()+' '+$('#roomtype').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
+				' '+$('#checkin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>';
+				$('#impossible_list').append(str); */
+				location.reload();
+			} 		
+		},'text');
+	} else { // update
+	$.post("http://localhost:8080/app/updateBooking",
+			//$.post("http://localhost:8081/app/updateRoom",		
+					{roomcode1:roomcode1,person:person,name:name,mobile:mobile},
+					function(result){
+				console.log(result);
+				if(result=="ok"){
+					location.reload();
+				}
+			},'text');
 		}
-			
-	},'text');
+	
 	return false;
 })
 .on("click","#btnEmpty", function(){
@@ -346,11 +357,7 @@ $(document)
 	return false;
 })
 .on("click","#btnDelete", function(){
-	var roomlist = $("#impossible_list").val();
-	var pk = String(roomlist).split(" "); //typecode를 가져오기 위해 split
-	var bookcode = parseInt(pk[0]); //int로 타입변환
-	console.log(bookcode);
-	$.post("http://localhost:8080/app/deleteRoom",{bookcode:bookcode},
+	$.post("http://localhost:8080/app/deleteRoom",{bookcode:$('#bookcode').val()},
 	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){
 		console.log(result);

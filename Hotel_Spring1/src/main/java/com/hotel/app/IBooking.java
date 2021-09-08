@@ -7,4 +7,5 @@ public interface IBooking {
 	void doAddBooking(int roomcode, int person, String checkin, String checkout, String summuch, String name,
 			String mobile);
 	void doDeleteBooking(int bookcode);
+	void doUpdateBooking(int roomcode,int person,String name,String mobile);
 }
