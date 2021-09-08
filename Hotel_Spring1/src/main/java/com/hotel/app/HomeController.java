@@ -230,6 +230,15 @@ public class HomeController {
 		room.doDeleteRoom(roomcode);
 		return "ok";
 	}
+	@RequestMapping(value ="/deletBooking",method = RequestMethod.POST,
+			produces = "application/text; charset=utf-8")
+	@ResponseBody
+	public String deletBooking(HttpServletRequest hsr) {
+		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		IBooking booking=sqlSession.getMapper(IBooking.class);
+		booking.doDeleteBooking(roomcode);
+		return "ok";
+	}
 	@RequestMapping(value ="/addRoom",method = RequestMethod.POST,
 			produces = "application/text; charset=utf-8")
 	@ResponseBody

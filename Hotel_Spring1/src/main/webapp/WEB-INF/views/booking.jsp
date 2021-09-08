@@ -172,7 +172,6 @@ $(document)
 	$('#impossible_list').children('option').remove();	
 	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
-				console.log($('#roomtype1').val());
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
 					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
@@ -275,17 +274,20 @@ $(document)
 	$("#roomname,#roomtype1,#howman,#howmany,#checkin1,#checkout1,#howmuch,#summuch,#howname,#mobile").val("");
 	return false;
 })
-/*.on("click","#btnDelete", function(){
-	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#roomcode').val()},
+.on("click","#btnDelete", function(){
+	var roomlist = $("#impossible_list").val();
+	var pk = String(roomlist).split(" "); //typecode를 가져오기 위해 split
+	var roomcode = parseInt(pk[0]); //int로 타입변환
+	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#impossible_list').val()},
 	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){
 		console.log(result);
 		if(result=="ok"){
 			$('#btnEmpty').trigger('click'); //입력란 비우기
-			$('#roomlist option:selected').remove(); //room리스트에서 제거
+			$('#impossible_list option:selected').remove(); //room리스트에서 제거
 		}
 	},'text');
 	return false;
-}) */
+})
 </script>
 </html>

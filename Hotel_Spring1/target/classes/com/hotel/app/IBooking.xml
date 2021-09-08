@@ -11,4 +11,7 @@
 		insert into booking(bookcode,roomcode,person,checkin,checkout,summuch,name,mobile)
 		values(seqbooking.nextval,#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7})
 	</insert> 
+	<delete id="doDeleteBooking">
+		delete from booking where roomcode=#{param1}
+	</delete>
 </mapper>
