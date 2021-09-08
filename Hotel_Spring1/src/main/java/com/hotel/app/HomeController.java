@@ -207,6 +207,7 @@ public class HomeController {
 		JSONArray ja = new JSONArray();
 		for(int i=0;i<bookinginfo.size();i++) {
 			JSONObject jo= new JSONObject();
+			jo.put("bookcode", bookinginfo.get(i).getBookcode());
 			jo.put("roomcode", bookinginfo.get(i).getRoomcode());
 			jo.put("typecode", bookinginfo.get(i).getTypecode());
 			jo.put("roomname", bookinginfo.get(i).getRoomname());
@@ -217,6 +218,7 @@ public class HomeController {
 			jo.put("summuch", bookinginfo.get(i).getSummuch());
 			jo.put("name", bookinginfo.get(i).getName());
 			jo.put("mobile", bookinginfo.get(i).getMobile());
+			jo.put("howmany", bookinginfo.get(i).getHowmany());
 			ja.add(jo);
 		}
 		return ja.toString();
@@ -234,9 +236,9 @@ public class HomeController {
 			produces = "application/text; charset=utf-8")
 	@ResponseBody
 	public String deletBooking(HttpServletRequest hsr) {
-		int roomcode=Integer.parseInt(hsr.getParameter("roomcode"));
+		int bookcode=Integer.parseInt(hsr.getParameter("bookcode"));
 		IBooking booking=sqlSession.getMapper(IBooking.class);
-		booking.doDeleteBooking(roomcode);
+		booking.doDeleteBooking(bookcode);
 		return "ok";
 	}
 	@RequestMapping(value ="/addRoom",method = RequestMethod.POST,

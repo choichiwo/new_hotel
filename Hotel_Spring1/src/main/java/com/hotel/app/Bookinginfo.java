@@ -1,6 +1,7 @@
 package com.hotel.app;
 
 public class Bookinginfo {
+	private int bookcode;
 	private int roomcode;
     private int person;
     private String checkin;
@@ -11,10 +12,13 @@ public class Bookinginfo {
     private String roomname;
     private String typename;
     private int typecode;
+    private int howmany;
 	public Bookinginfo() {
 	}
-	public Bookinginfo(int roomcode, int person, String checkin, String checkout, String summuch, String name,
-			String mobile, String roomname, String typename, int typecode) {
+	public Bookinginfo(int bookcode, int roomcode, int person, String checkin, String checkout, String summuch,
+			String name, String mobile, String roomname, String typename, int typecode, int howmany) {
+		super();
+		this.bookcode = bookcode;
 		this.roomcode = roomcode;
 		this.person = person;
 		this.checkin = checkin;
@@ -25,6 +29,19 @@ public class Bookinginfo {
 		this.roomname = roomname;
 		this.typename = typename;
 		this.typecode = typecode;
+		this.howmany = howmany;
+	}
+	/**
+	 * @return the bookcode
+	 */
+	public int getBookcode() {
+		return bookcode;
+	}
+	/**
+	 * @param bookcode the bookcode to set
+	 */
+	public void setBookcode(int bookcode) {
+		this.bookcode = bookcode;
 	}
 	/**
 	 * @return the roomcode
@@ -146,5 +163,18 @@ public class Bookinginfo {
 	public void setTypecode(int typecode) {
 		this.typecode = typecode;
 	}
-	
+	/**
+	 * @return the howmany
+	 */
+	public int getHowmany() {
+		return howmany;
+	}
+	/**
+	 * @param howmany the howmany to set
+	 */
+	public void setHowmany(int howmany) {
+		this.howmany = howmany;
+	}
+    
+
 }

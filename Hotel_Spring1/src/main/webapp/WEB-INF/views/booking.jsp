@@ -67,7 +67,9 @@
                     <table class="choices">
                         <tr>
                             <th>객실명</th>
-                            <td><input type="text" name="roomname" id="roomname" size="20"><input type="hidden" id="roomcode"></td>
+                            <td><input type="text" name="roomname" id="roomname" size="20">
+                            <input type="text" id="roomcode">
+                            <input type="text" id="bookcode"></td>
                         </tr>
                         <tr>
                             <th>객실종류</th>
@@ -173,12 +175,12 @@ $(document)
 	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
 				$.each(result,function(ndx,value){
-					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['summuch']+','
+					str='<option value="'+value['bookcode']+' '+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['howmany']+','+value['summuch']+','
 					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
 					$("#impossible_list").append(str);
 				});
 		},"json");	
-		
+	
 	return false;
 }) 
 .on("click","#roomlist", function(){
@@ -241,6 +243,75 @@ $(document)
 	
 	return false;
 })
+.on("click","#impossible_list", function(){
+	var roomlist = $("#impossible_list option:selected").text(); //option값 가져오기
+	var roomlist1 = $("#impossible_list").val(); //value에서 typecode 가져오기
+	var pk = String(roomlist1).split(" "); //typecode를 가져오기 위해 split
+	var typecode = parseInt(pk[3]); //int로 타입변환
+	var list = String(roomlist).split(","); //option에서 가져온 값들 배열로 슬라이싱
+	console.log(list);
+	
+	var roomname = list[0];
+	var roomtype = list[1];
+	var howman = list[2];
+	var howmany = list[3];
+	var howmuch = list[4];
+	var checkin1 = list[5];
+	var checkout1 = list[6];
+	var name = list[7];
+	var mobile = list[8];
+	
+	$("#roomname").val(roomname);
+	$("#howman").val(howman);
+	$("#howmany").val(howmany);
+	$("#howmuch").val(howmuch);
+	$("#checkin1").val(checkin1);
+	$("#checkout1").val(checkout1);
+	$("#howname").val(name);
+	$("#mobile").val(mobile);
+	
+  //아니면 이거 조인 sql로? ㅇㅇ해서 가져오면 됨
+    let checkin = $('#checkin').val();
+    let checkout = $('#checkout').val();
+    $("#checkin1").val(checkin);
+	$("#checkout1").val(checkout);
+
+
+    if(checkin == '' || checkout == '') { 
+       return false;         
+    }
+    checkin = new Date(checkin);
+    checkout = new Date(checkout);
+    
+    if(checkin > checkout) {
+       alert('체크인 날짜가 체크아웃보다 나중 일 수 없습니다.');
+       return false;
+    }
+    let ms = Math.abs(checkout-checkin);
+    let days = Math.ceil(ms/(1000*60*60*24));
+    let price = parseInt($('#howmuch').val())
+    let total = days*price;
+
+    $('#summuch').val(total);
+	
+    var roomcode = parseInt(pk[1]);
+	$("#roomcode").val(roomcode);
+	
+	var bookcode = parseInt(pk[0]);
+	$("#bookcode").val(bookcode);
+	
+	if(typecode==1){ //선택시 같은 type코드가 선택될수 있게 해줌. true가 선택됬다표시
+		$("#roomtype1").val(1).prop("selected", true);
+	} else if(typecode==2){
+		$("#roomtype1").val(2).prop("selected", true);
+	} else if(typecode==3){
+		$("#roomtype1").val(3).prop("selected", true);
+	} else if(typecode==4){
+		$("#roomtype1").val(4).prop("selected", true);
+	}
+	
+	return false;
+})
 .on('click','#btnAdd',function(){
 	let roomcode1 = String($('#roomcode').val());
 	let person=String($('#howman').val());
@@ -277,17 +348,20 @@ $(document)
 .on("click","#btnDelete", function(){
 	var roomlist = $("#impossible_list").val();
 	var pk = String(roomlist).split(" "); //typecode를 가져오기 위해 split
-	var roomcode = parseInt(pk[0]); //int로 타입변환
-	$.post("http://localhost:8080/app/deleteRoom",{roomcode:$('#impossible_list').val()},
+	var bookcode = parseInt(pk[0]); //int로 타입변환
+	console.log(bookcode);
+	$.post("http://localhost:8080/app/deleteRoom",{bookcode:bookcode},
 	//$.post("http://localhost:8081/app/deleteRoom",{roomcode:$('#roomcode').val()},		
 			function(result){
 		console.log(result);
 		if(result=="ok"){
 			$('#btnEmpty').trigger('click'); //입력란 비우기
 			$('#impossible_list option:selected').remove(); //room리스트에서 제거
+			$('#btnFind').trigger('click');
 		}
 	},'text');
 	return false;
 })
+
 </script>
 </html>
