@@ -16,7 +16,7 @@
       where type=#{param3} and roomcode not in(
       select roomcode from room
       INTERSECT
-      select roomcode from booking where (checkin between #{param1} and to_date(#{param2})-1) 
+      select roomcode from booking where (checkin between to_date(#{param1}) and to_date(#{param2})-1) 
       or (checkout between to_date(#{param1})+1 and to_date(#{param2})) or <![CDATA[(checkin<#{param1} and checkout>to_date(#{param2})-1))]]>   
    </select>
 	<select id="getRoomType" resultType="com.hotel.app.Roomtype">
