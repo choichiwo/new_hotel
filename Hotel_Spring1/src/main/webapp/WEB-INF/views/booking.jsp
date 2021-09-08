@@ -163,9 +163,9 @@ $(document)
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmany']+'</option>';
-					if($('#roomtype').val()==value['typecode']){
+					//if($('#roomtype').val()==value['typecode']){
 						$("#roomlist").append(str);
-					}
+					//}
 				});
 		},"json");
 			
