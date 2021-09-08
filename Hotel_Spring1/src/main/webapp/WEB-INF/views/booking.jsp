@@ -150,7 +150,7 @@ $(document)
 
 	
 	$('#roomlist').children('option').remove();
-	$.post("http://localhost:8080/app/getRoomList",{},function(result){
+	$.post("http://localhost:8080/app/getRoomList1",{checkin:$('#checkin').val(),checkout:$('#checkout').val()},function(result){
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmany']+'</option>';

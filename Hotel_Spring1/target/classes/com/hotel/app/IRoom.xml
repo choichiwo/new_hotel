@@ -8,6 +8,11 @@
 		from room a,roomtype b
 		where a.type=b.typecode
 	</select>
+	<select id="getRoomList1" resultType="com.hotel.app.Roominfo">
+		select a.roomcode,a.name roomname,b.name typename,a.howmany,a.howmuch, b.typecode
+		from room a,roomtype b
+		where a.type=b.typecode
+	</select>
 	<select id="getRoomType" resultType="com.hotel.app.Roomtype">
 		select name, typecode from roomtype order by typecode
 	</select>
