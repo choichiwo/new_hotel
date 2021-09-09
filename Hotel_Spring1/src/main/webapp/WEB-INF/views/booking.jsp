@@ -369,6 +369,8 @@ $(document)
 			$('#btnFind').trigger('click');
 		}
 	},'text');
+	
+	//$('#reservation_modify').prop("disabled", false); 버튼 비활성으로 바꿔주는 코드
 	return false;
 })
 
