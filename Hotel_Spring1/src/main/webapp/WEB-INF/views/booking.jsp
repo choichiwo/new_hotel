@@ -164,7 +164,7 @@ $(document)
 	$.post("http://localhost:8080/app/getRoomList1",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:$('#roomtype1').val()},function(result){
 		//$.post("http://localhost:8081/app/getRoomList",{},function(result){
 				$.each(result,function(ndx,value){
-					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmany']+'</option>';
+					str='<option value="'+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['howmany']+','+value['howmuch']+'</option>';
 					//if($('#roomtype').val()==value['typecode']){
 						$("#roomlist").append(str);
 					//}

@@ -17,7 +17,6 @@ public class Bookinginfo {
 	}
 	public Bookinginfo(int bookcode, int roomcode, int person, String checkin, String checkout, String summuch,
 			String name, String mobile, String roomname, String typename, int typecode, int howmany) {
-		super();
 		this.bookcode = bookcode;
 		this.roomcode = roomcode;
 		this.person = person;
