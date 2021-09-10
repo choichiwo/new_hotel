@@ -18,4 +18,8 @@
 		update booking set person=#{param2},name=#{param3},mobile=#{param4}
 		where bookcode=#{param1}
 	</update>
+	<select id="checkBooking" resultType="com.hotel.app.Bookinginfo">
+		select a.bookcode, to_char(a.checkin, 'YYYY-MM-DD') as checkin,to_char(a.checkout, 'YYYY-MM-DD') as checkout, a.mobile, a.name, a.summuch, a.person, a.roomcode, b.name roomname, c.name typename, b.howmany from booking a, room b, roomtype c
+      where a.roomcode = b.roomcode and b.type=c.typecode
+	</select>
 </mapper>
