@@ -117,7 +117,7 @@ main{
 /*--possible_list 영역  */
 .possible_list select {
     width: 400px;
-    background-color: #d0e4f5d0;
+    opacity: 0.7;
 }
 .possible_list h2 {
     margin-top: 10px;
@@ -133,37 +133,49 @@ main{
 }
 .choicesystem #roomname {
     width: 323px;
+    opacity: 0.7;
 }
 .choicesystem #roomtype1 {
     width: 323px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #howmany {
     width: 308px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #howmuch {
     width: 308px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #summuch {
     width: 308px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #howman {
     width: 308px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #howname {
     width: 323px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #mobile {
     width: 323px;
     margin-top: 15px;
+    opacity: 0.7;
 }
 .choicesystem #checkin1 {
     margin-top: 15px;
+    opacity: 0.7;
+}
+.choicesystem #checkout1 {
+    opacity: 0.7;
 }
 /*--btnsm영역--*/
 .btns {
@@ -209,5 +221,5 @@ main{
 .impossible_list select {
     width: 450px;
     overflow: scroll;
-    background-color: #ebd0d9d0;
+    opacity: 0.7;
 }
