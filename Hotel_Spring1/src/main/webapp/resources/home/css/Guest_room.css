@@ -111,8 +111,28 @@ main{
     height: 500px;
     margin-top: 35px;
 }
+.space #checkin {
+    opacity: 0.7;
+}
+.space #checkout {
+    opacity: 0.7;
+}
+.space #btnFind {
+	font-weight: 600;
+	border: none;
+    border-radius: 10%;
+    background-color: rgb(208, 234, 245);
+}
+.space #btnFind:hover {
+	opacity: 0.7;
+}
+/*버튼을 누른 시간*/
+.space #btnFind:active {
+	color: #fff;
+}
 .space select {
     margin-top: 15px;
+    opacity: 0.7;
 }
 /*--possible_list 영역  */
 .possible_list select {
