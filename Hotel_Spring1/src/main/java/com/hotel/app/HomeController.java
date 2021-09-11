@@ -134,7 +134,13 @@ public class HomeController {
 //	public String newinfo(@ModelAttribute("pl") ParamList pl) {
 //		return "home";
 //	}
-	
+	@RequestMapping("/checkbooking")
+	   public String checkbooking(HttpServletRequest hsr) {
+		HttpSession session = hsr.getSession();
+		IBooking booking=sqlSession.getMapper(IBooking.class);
+		ArrayList<Bookinginfo> bookinginfo=booking.checkBooking();
+	      return "checkbooking"; 
+	   }
 	
 	@RequestMapping("/room")
 	   public String go_reservation(HttpServletRequest hsr,Model model) {
