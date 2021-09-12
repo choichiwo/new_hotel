@@ -119,7 +119,6 @@
                 </div><!-- btns -->
             </div><!-- choicesystem -->
 
-
             <div class="impossible_list">
                 <h2>예약된 객실</h2>
                     <select size="20" name="pref" id="impossible_list">
