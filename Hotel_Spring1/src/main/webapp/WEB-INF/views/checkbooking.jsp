@@ -8,7 +8,7 @@
 <title>예약된 객실</title>
 </head>
 <!-- 객실관리 Guest_room CSS 임포트 -->
-<link rel="stylesheet" href="resources/home/css/Guest_room.css">
+<link rel="stylesheet" href="resources/home/css/Checkbooking.css">
 <body>
    <div id="container">
         <header>
@@ -25,15 +25,25 @@
         <main>
             <div class="space">
                 <table class="space_table">
-                    <tr>
-                        <th class="bunlyu">객실종류</th>
-                        <td>
-                            <select name="impossible_list" id="impossible_list" size="1" style="width:200px;">
-                          
-                            </select>
-                        </td>
-                    </tr>
+                   <th>예약기간&nbsp;</th>
+                   <td><input id="checkin" name="checkin" type="date" required="required"> ~ <input id="checkout" name="checkout" type="date" required="required">&nbsp;&nbsp;&nbsp;</td>
+                <th>객실종류&nbsp;&nbsp;</th>
+                <td>
+                <select size=1  id="select_roomtype">
+		           <option value=1>Suite Room</option>
+		           <option value=2>Family Room</option>
+		           <option value=3>Double Room</option>
+		           <option value=4>Single Room</option>
+		      	 </select>
+		      	 <input type="button" value="조회" id="btnFind">
+		      	 </td>
                 </table>
+                
+                <div class="impossible_list">
+                <h1>예약된 객실</h1>
+                <select name="impossible_list" size=10 id="impossible_list" multiple>
+                </select>
+                </div>
             </div><!-- space -->
 
         </main>
@@ -53,5 +63,20 @@ $(document)
 				});
 		},"json");	
 })
+.on("click","#btnFind", function(){
+	var typecode = String($('#select_roomtype').val());
+	
+	$('#impossible_list').children('option').remove();	
+	$.post("http://localhost:8080/app/getbooking",{checkin:$('#checkin').val(),checkout:$('#checkout').val(),typecode:typecode},function(result){
+		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
+				$.each(result,function(ndx,value){
+					str='<option value="'+value['bookcode']+' '+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['howmany']+','+value['summuch']+','
+					+value['checkin']+','+value['checkout']+','+value['name']+','+value['mobile']+'</option>';
+					$("#impossible_list").append(str);
+				});
+		},"json");	
+	
+	return false;
+}) 
 </script>
 </html>

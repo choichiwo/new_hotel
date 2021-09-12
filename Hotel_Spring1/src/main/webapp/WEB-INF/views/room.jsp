@@ -42,7 +42,7 @@
                         <td><input type="text" id="roomname" name="room_name" size="20"><input type="hidden" id="roomcode"></td>
                     </tr>
                     <tr>
-                        <th class="bunlyu">객실분류</th>
+                        <th>객실분류</th>
                         <td>
                         	<select id="roomtype" size="10" style="width:250px;">
                              <c:forEach items="${roomType}" var="room">
