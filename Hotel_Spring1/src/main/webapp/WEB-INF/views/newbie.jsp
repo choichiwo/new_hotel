@@ -6,17 +6,22 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 </head>
+<link rel="stylesheet" href="resources/home/css/Home.css">
 <body>
-<h1>회원가입</h1><hr>
+<div class="home">
+<h1 class="head">회원가입</h1>
+<div class="body">
 <form method="POST" action="app/join">
-	이름 : <input type=text name=username required><br>
-	아이디 : <input type=text name=userid required><br>
-	비밀번호 : <input type=password name=passcode1 required><br>
-	비밀번호 확인 : <input type=password name=passcode2 required><br>
-	핸드폰 번호 : <input type=text name=mobile required><br>
-	<input type="submit" id="btnInput" value="등록">
-	<button value="취소" onclick="location.href='home'">취소</button>
+	이름 : <input class="box" type=text name=username required><br>
+	아이디 : <input class="box" type=text name=userid required><br>
+	비밀번호 : <input class="box" type=password name=passcode1 required><br>
+	비밀번호 확인 : <input class="box" type=password name=passcode2 required><br>
+	핸드폰 번호 : <input class="box" type=text name=mobile required><br>
+	<input class="btn" type="submit" id="btnInput" value="등록">
+	<button class="btn" value="취소" onclick="location.href='home'">취소</button>
 </form>
+</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script>
