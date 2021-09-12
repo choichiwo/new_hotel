@@ -13,11 +13,12 @@
 </h1>
 <div class="body">
 <form method="POST" action="/app/check_user" id="frmLogin">
-	ID : <input type=text name=userid required><br>
+	ID : <input type=text name=userid required><br><br>
 	PW : <input type=pessword name=passcode required><br><br>
-	<input type=submit value="로그인">	
+	<input class="btn" type=submit value="로그인">	
+	<button class="btn" onclick="location.href='newbie'">회원가입</button>
 </form></div>
-<h3 class="btn"><a href="newbie">회원가입</a></h3>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

@@ -51,14 +51,41 @@ table {
 .home{
 	width:1535px;
 	height:720px;
-	text-align:left;
 	overflow:hidden;
+	text-align: center;
     background-image: url(../img/background.jpg);
 }
 .head {
-	text-align: center;
+	font-size: 25px;
+    font-weight: bold;
+	width:1535px;
+	height:70px;
+	display:table-cell;
+	vertical-align:middle;
+	background-color: rgb(233, 190, 213);
 }
 .body {
-	text-align: center;
+	font-size: 15px;
+    font-weight: bold;
+	margin-top: 15px;
+}
+.btn:hover {
+	opacity: 0.7;
+}
+/*버튼을 누른 시간*/
+.btn:active {
+	color: #fff;
+}
+/*버튼의 역할에 맞춰 색상 나누기*/
+.btn {
+	font-weight: 600;
+	width: 80px;
+    height: 40px;
+	padding: 10px;
+    margin-left: 10px;
+	border: none;
+	font-size: 15px;
+    border-radius: 10%;
+	background-color: rgb(208, 234, 245);
 }
 
