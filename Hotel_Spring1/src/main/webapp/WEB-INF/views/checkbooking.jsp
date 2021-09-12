@@ -41,7 +41,7 @@
                 
                 <div class="impossible_list">
                 <h1>예약된 객실</h1>
-                <select name="impossible_list" size=10 id="impossible_list" multiple>
+                <select name="impossible_list" size=12 id="impossible_list" multiple>
                 </select>
                 </div>
             </div><!-- space -->
@@ -54,7 +54,7 @@
 <script>
 $(document)
 .ready(function() {
-	$.post("http://localhost:8080/app/checkbooking",{},function(result){ 
+	$.post("http://localhost:8080/app/checkBooking",{},function(result){ 
 		//$.post("http://localhost:8081/app/getgetBooking",{},function(result){
 				$.each(result,function(ndx,value){
 					str='<option value="'+value['bookcode']+' '+value['roomcode']+' '+value['typecode']+'">'+value['roomname']+','+value['typename']+','+value['person']+','+value['howmany']+','+value['summuch']+','
