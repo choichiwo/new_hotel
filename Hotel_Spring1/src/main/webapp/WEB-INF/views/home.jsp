@@ -5,23 +5,19 @@
 <head>
 	<title>Home</title>
 </head>
-<style>
-body {
-	background-image: url(../img/background.jpg);
-}
-</style>
+<link rel="stylesheet" href="resources/home/css/Home.css">
 <body>
 <div class="home">
 <h1 class="head">
 	Hotel Manager Home 
 </h1>
-<div class="body" style="text-align: center">
+<div class="body">
 <form method="POST" action="/app/check_user" id="frmLogin">
 	ID : <input type=text name=userid required><br>
 	PW : <input type=pessword name=passcode required><br><br>
 	<input type=submit value="로그인">	
 </form></div>
-<h3 class="btn" style="text-align: center"><a href="newbie">회원가입</a></h3>
+<h3 class="btn"><a href="newbie">회원가입</a></h3>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
