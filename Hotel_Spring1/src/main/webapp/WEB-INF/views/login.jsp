@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>로그인</h1><hr>
-<form method="POST" action="/app/check_user">
+<form id="login" method="POST" action="/app/check_user">
 	ID : <input type=text name=userid required><br>
 	PW : <input type=text name=userpw required><br>
 	<input type=submit value="로그인">	
