@@ -17,8 +17,7 @@
 	PW : <input type=pessword name=passcode required><br>
 	<input class="btn" type=submit value="로그인">	
 	<button class="btn" onclick="location.href='newbie'">회원가입</button>
-</form></div>
-
+</form>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

@@ -11,7 +11,7 @@
 <div class="home">
 <h1 class="head">회원가입</h1>
 <div class="body">
-<form method="POST" action="app/join">
+<form method="POST" action="app/join" id="log">
 	이름 : <input class="box" type=text name=username required><br>
 	아이디 : <input class="box" type=text name=userid required><br>
 	비밀번호 : <input class="box" type=password name=passcode1 required><br>
