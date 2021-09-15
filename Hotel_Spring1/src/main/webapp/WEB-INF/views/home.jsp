@@ -13,7 +13,7 @@
 </h1>
 <div class="body">
 <form method="POST" action="/app/check_user" id="frmLogin">
-	ID : <input type=text name=userid required><br><br>
+	ID : <input class="do" type=text name=userid required><br><br>
 	PW : <input type=pessword name=passcode required><br>
 	<input class="btn" type=submit value="로그인">	
 	<button class="btn" onclick="location.href='newbie'">회원가입</button>
