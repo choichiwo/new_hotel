@@ -12,11 +12,11 @@
 <h1 class="head">회원가입</h1>
 <div class="body">
 <form method="POST" action="app/join" id="log">
-	이름 : <input class="box" type=text name=username required><br>
-	아이디 : <input class="box" type=text name=userid required><br>
-	비밀번호 : <input class="box" type=password name=passcode1 required><br>
+	이름  :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input class="box" type=text name=username required><br>
+	아이디 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <input class="box" type=text name=userid required><br>
+	비밀번호 :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <input class="box" type=password name=passcode1 required><br>
 	비밀번호 확인 : <input class="box" type=password name=passcode2 required><br>
-	핸드폰 번호 : <input class="box" type=text name=mobile required><br>
+	핸드폰 번호 :&nbsp;&nbsp;&nbsp;  <input class="box" type=text name=mobile required><br>
 	<input class="btn" type="submit" id="btnInput" value="등록">
 	<button class="btn" value="취소" onclick="location.href='home'">취소</button>
 </form>
