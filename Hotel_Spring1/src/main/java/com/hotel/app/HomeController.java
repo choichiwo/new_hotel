@@ -89,13 +89,13 @@ public class HomeController {
 	      String passcode = hsr.getParameter("passcode");
 	      //DB에서 유저확인 : 기존유저면 booking 없으면 home으로
 	      IMember member=sqlSession.getMapper(IMember.class);
-	      int n=member.doCheckUser(userid,passcode);
+	      int n=member.doCheckUser(userid,passcode);	      
 	      if(n>0) {
 	    	  HttpSession session = hsr.getSession();
-	    	  session.setAttribute("loginid", userid);
+	    	  session.setAttribute("loginid", userid);	    	  
 	    	  return "redirect:/booking";
 	      } else { //비등록 회원
-	    	  return "home";
+	    	  return "login";
 	      }      
 	}
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
@@ -148,7 +148,6 @@ public class HomeController {
 		if(session.getAttribute("loginid")==null) {
 			return "redirect:/home";
 		}
-		// �뿬湲곗꽌 interface�샇異쒗븯怨� 寃곌낵瑜� room.jsp�뿉 �쟾�떖.
 		IRoom room=sqlSession.getMapper(IRoom.class);
 //		ArrayList<Roominfo> roominfo=room.getRoomList();
 //		model.addAttribute("list",roominfo);

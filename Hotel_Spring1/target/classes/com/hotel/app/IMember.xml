@@ -8,4 +8,7 @@
 	<select id="doCheckUser" resultType="int">
 		select count(*) from member where userid=#{param1} and passcode1=#{param2}
 	</select>
+	<select id="doCheckPW" resultType="String">
+		select * from member where userid=#{userid}
+	</select>
 </mapper>
