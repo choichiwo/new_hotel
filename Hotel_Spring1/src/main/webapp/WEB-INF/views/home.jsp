@@ -16,7 +16,7 @@
 	ID : <input class="do" type=text name=userid><br><br>
 	PW : <input type=pessword name=passcode><br>
 	<input class="btn" type=submit value="로그인">	
-	<button class="btn" onclick="location.href='newbie'">회원가입</button>
+	<button type="button" class="btn" onclick="location.href='newbie'">회원가입</button>
 </form>
 </div>
 </body>
@@ -25,13 +25,14 @@
 $(document)
 .on("submit","#frmLogin",function(){
 	let userid=$.trim($('input[name=userid]').val());
-	if(userid=='') {
-        alert("아이디를 확인해주세요.");
+	if(userid === '' ) {
+        alert("아이디를 입력해주세요.");
         return false;
-	}
+	} 
+	let a; // "undefined"
 	userpw=$.trim($('input[name=passcode]').val());
-	if(userpw=='') {
-        alert("비밀번호가 맞지 않습니다.");
+	if(userpw === '' || userpw === undefined || userpw === ' ' || userpw === null) {
+        alert("비밀번호 입력해주세요.");
         return false;
 	}
 })	

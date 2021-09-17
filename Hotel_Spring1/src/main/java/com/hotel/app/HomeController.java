@@ -96,8 +96,8 @@ public class HomeController {
 	    	  return "redirect:/booking";
 	      } else { //비등록 회원
 	    	  return "home";
-	      }
-	   }
+	      }      
+	}
 	@RequestMapping(value="/booking", method=RequestMethod.GET)
 	   public String booking(HttpServletRequest hrs,Model model) {
 		HttpSession session = hrs.getSession();

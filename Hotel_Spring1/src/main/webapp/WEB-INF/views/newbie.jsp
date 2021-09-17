@@ -18,7 +18,7 @@
 	비밀번호 확인 : <input class="box" type=password name=passcode2 required><br>
 	핸드폰 번호 :&nbsp;&nbsp;&nbsp;  <input class="box" type=text name=mobile required><br>
 	<input class="btn" type="submit" id="btnInput" value="등록">
-	<button class="btn" value="취소" onclick="location.href='home'">취소</button>
+	<button type="button" class="btn" value="취소" onclick="location.href='home'">취소</button>
 </form>
 </div>
 </div>
