@@ -336,7 +336,8 @@ $(document)
 				/* let str='<option>'+$('#roomname').val()+' '+$('#roomtype').val()+' '+$('#howman').val()+' / '+$('#howmany').val()+
 				' '+$('#checkin').val()+' '+$('#checkout').val()+' '+$('#summuch').val()+' '+$('#howname').val()+' '+$('#mobile').val()+'</option>';
 				$('#impossible_list').append(str); */
-				location.reload();
+				$('#btnEmpty').trigger('click'); //입력란 비우기
+				$('#btnFind').trigger('click');
 			} 		
 		},'text');
 	} else { // update
