@@ -110,6 +110,7 @@ main{
     width: 250px;
     height: 500px;
     float: left;
+    margin-left: 350px;
 }
 h2 {
     font-size: 18px;
@@ -145,7 +146,7 @@ h2 {
     width: 800px;
     height: 500px;
     padding-left: 30px;
-    margin-left: 280px;
+    margin-left: 100px;
     float: left;
 }
 .choices {
