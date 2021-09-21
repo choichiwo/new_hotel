@@ -105,6 +105,7 @@ public class HomeController {
 		ArrayList<Roomtype> roomtype=room.getRoomType();
 		model.addAttribute("roomType",roomtype);
 		String loginid = (String)session.getAttribute("loginid");
+		model.addAttribute("loginid", loginid);
 		if(loginid==null) {
 			return "redirect:/home"; 
 		}

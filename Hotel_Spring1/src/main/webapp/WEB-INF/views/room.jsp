@@ -28,7 +28,7 @@
     <main>
         <div class="nav">
             <h2>객실목록</h2>
-                <select id="roomlist" size="10" style="width:250px;">
+                <select id="roomlist" size="10">
                     <%-- <c:forEach items="${list}" var="room">
                     	<option value="${room.roomcode}">${room.roomname},${room.typename},${room.howmany},${room.howmuch}</option>
                     </c:forEach> --%>

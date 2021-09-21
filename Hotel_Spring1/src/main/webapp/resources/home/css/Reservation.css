@@ -110,12 +110,12 @@ main{
     width: 250px;
     height: 500px;
     float: left;
-    margin-left: 350px;
+    margin-left: 250px;
 }
 h2 {
     font-size: 18px;
     font-weight: 300;
-    width: 200px;
+    width: 300px;
     height: 30px;
     background-color: rgba(151, 243, 243, 0.849);
     color:black;
@@ -124,7 +124,7 @@ h2 {
     margin-top: 45px;
 }
 .nav select {
-    width: 250px;
+	width: 350px;
     height: 300px;
     opacity: 0.7;
 }
