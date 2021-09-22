@@ -79,6 +79,7 @@ table {
 
 #gnav .menu > li {
 	float:left;
+	text-align:center;
 }
 
 #gnav .menu li a {
