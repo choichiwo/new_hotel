@@ -20,7 +20,7 @@
                 <li><a href="room">객실관리</a></li>
                 <li><a href="booking">예약관리</a></li>
                 <li><a href="checkbooking">예약된 객실</a></li>
-                <li><a href="logout">로그아웃</a></li>
+                <li><a href="logout">${loginid}회원 로그아웃</a></li>
             </ul>
          </div><!--gnav-->
     </header>
